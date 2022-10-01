@@ -4,7 +4,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CrewmateController : Phaseable {
+public class CrewmateController : Phaseable
+{
+
+    public GameObject selectorSmall;
+    public GameObject selectorBig;
+    private bool mouseOver=false;
+    private GamePhaseLoop _phaseLoop;
 
     private Rigidbody2D _rigidbody2D;
     public bool userControlled;
@@ -14,11 +20,13 @@ public class CrewmateController : Phaseable {
     private Vector2 _initialPosition;
     private ushort _lastInput;
     public float speed = 1.5f;
-    
+    public bool selected => Game.selectedCrewmate == this;
+
     // Start is called before the first frame update
     public override void Start() {
         base.Start();
         Debug.Log("Start");
+        _phaseLoop = FindObjectOfType<GamePhaseLoop>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _initialPosition = transform.position;
     }
@@ -106,7 +114,54 @@ public class CrewmateController : Phaseable {
     }
 
     public override void PhaseEvacuate() {
+        UpdateSelector();
     }
     public override void PhasePlanning() {
+        UpdateSelector();
+    }
+
+    public void UpdateSelector()
+    {
+        GameState.Phase currentPhase = Game.currentPhase;
+        
+        if (currentPhase!=GameState.Phase.PlanningPhase)
+        {
+            selectorSmall.SetActive(false);
+            selectorBig.SetActive(false);
+            return;
+        }
+
+        if (mouseOver ||selected)
+        {
+            selectorSmall.SetActive(true);
+            selectorBig.SetActive(false);
+        }
+        else
+        {
+            selectorSmall.SetActive(false);
+            selectorBig.SetActive(true);
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        mouseOver = true;
+        UpdateSelector();
+    }
+
+    public void OnMouseExit()
+    {
+        mouseOver = false;
+        UpdateSelector();
+    }
+
+    private void OnMouseDown()
+    {
+        print("A crewmate has been clicked.");
+        if (Game.currentPhase==GameState.Phase.PlanningPhase)
+        {
+            Game.selectedCrewmate = this;
+            _phaseLoop.NextPhase();
+        }
     }
 }
