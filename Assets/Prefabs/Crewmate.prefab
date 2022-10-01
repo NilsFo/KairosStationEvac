@@ -179,7 +179,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1383064394, guid: b37b59d48b1cff14bbbbd78419786d91, type: 3}
+  m_Sprite: {fileID: 233713376, guid: a9f8c64bba7629a4380732ef263781f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -263,7 +263,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1797314358, guid: b37b59d48b1cff14bbbbd78419786d91, type: 3}
+  m_Sprite: {fileID: -241439507, guid: a9f8c64bba7629a4380732ef263781f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -326,6 +326,7 @@ MonoBehaviour:
   selectorBig: {fileID: 2250066046801806021}
   playerControlled: 0
   speed: 2.5
+  startFlipped: 0
   renderer: {fileID: 149923623}
 --- !u!50 &2344044034692930154
 Rigidbody2D:
