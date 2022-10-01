@@ -10,5 +10,19 @@ public abstract class Phaseable: MonoBehaviour {
     
     public virtual void Start() {
         Game = FindObjectOfType<GameState>();
+        Game.SubscribeToPhases(this);
+    }
+
+    public virtual void OnEnable()
+    {
+        if (Game != null)
+        {
+            Game.SubscribeToPhases(this);
+        }
+    }
+
+    public virtual void OnDisable()
+    {
+        Game.UnsubscribeFromPhases(this);
     }
 }

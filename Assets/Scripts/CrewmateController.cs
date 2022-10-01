@@ -46,7 +46,7 @@ public class CrewmateController : Phaseable {
     }
     
     private void FixedUpdate() {
-        if (Game.currentState == GameState.State.EvacuationPhase) {
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase) {
             if (_frame >= n_frames) {
                 return;
             }

@@ -7,12 +7,12 @@ public class GamePhaseLoop : MonoBehaviour
     public GameState myGameState;
     public int phaseLength = 10;
     private float timer;
-    private GameState.State currentState = GameState.State.Unknown;
+    private GameState.Phase _currentPhase = GameState.Phase.Unknown;
 
     // Start is called before the first frame update
     void Start()
     {
-        myGameState.currentState = GameState.State.PlanningPhase;
+        myGameState.currentPhase = GameState.Phase.PlanningPhase;
         timer = 0;
     }
 
@@ -20,9 +20,9 @@ public class GamePhaseLoop : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        currentState = myGameState.currentState;
+        _currentPhase = myGameState.currentPhase;
 
-        if (currentState == GameState.State.WinState || currentState == GameState.State.Unknown)
+        if (_currentPhase == GameState.Phase.WinState || _currentPhase == GameState.Phase.Unknown)
         {
             return;
         }
@@ -36,13 +36,13 @@ public class GamePhaseLoop : MonoBehaviour
 
     public void NextPhase()
     {
-        if (currentState == GameState.State.PlanningPhase)
+        if (_currentPhase == GameState.Phase.PlanningPhase)
         {
-            myGameState.currentState = GameState.State.EvacuationPhase;
+            myGameState.currentPhase = GameState.Phase.EvacuationPhase;
         }
         else
         {
-            myGameState.currentState = GameState.State.PlanningPhase;
+            myGameState.currentPhase = GameState.Phase.PlanningPhase;
         }
     }
 }

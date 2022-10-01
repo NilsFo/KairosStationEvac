@@ -17,6 +17,6 @@ public class UILogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameStateText.text = "State: " + _gameState.currentState;
+        gameStateText.text = "State: " + _gameState.currentPhase;
     }
 }
