@@ -132,15 +132,18 @@ public class GameState : MonoBehaviour
     private void OnPhaseEvacuate()
     {
         onPhasePlaying.Invoke();
-        foreach (var p in myObservers)
-        {
-            p.PhaseEvacuate();
-        }
-
+        
         // Setting player control
         foreach (CrewmateController c in allCrewmates)
         {
             c.playerControlled = false;
+        }
+
+        selectedCrewmate.playerControlled = true;
+        
+        foreach (var p in myObservers)
+        {
+            p.PhaseEvacuate();
         }
 
         if (selectedCrewmate == null)
@@ -150,7 +153,6 @@ public class GameState : MonoBehaviour
             return;
         }
 
-        selectedCrewmate.playerControlled = true;
     }
 
     private void OnPhasePlanning()

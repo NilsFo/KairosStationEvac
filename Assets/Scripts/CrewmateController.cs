@@ -138,6 +138,7 @@ public class CrewmateController : Phaseable
 
     public override void PhaseEvacuate() {
         if (playerControlled) {
+            Debug.Log("Deleting inputs");
             _savedInputs = new ushort[n_frames];
         }
         UpdateSelector();
@@ -184,6 +185,11 @@ public class CrewmateController : Phaseable
         Game.DisplayFloatingText(transform.position,"'I am safe!'",5);
         graphicsObj.SetActive(false);
         rescued = true;
+        Game.CheckWinCondition();
+
+        // if (Game.currentPhase==GameState.Phase.EvacuationPhase && SelectedForEvac) {
+        //     _phaseLoop.NextPhase();
+        // }
     }
 
     private void OnMouseEnter()
