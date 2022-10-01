@@ -20,10 +20,29 @@ public class GamePhaseLoop : MonoBehaviour
     void Update()
     {
         _currentPhase = myGameState.currentPhase;
-
         if (_currentPhase == GameState.Phase.Unknown)
         {
             Debug.LogError("UNKNOWN SATE!");
+        }
+
+        //Checking for inputs
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            switch (_currentPhase)
+            {
+                case GameState.Phase.Unknown:
+                    myGameState.BackToMainMenu();
+                    return;
+                case GameState.Phase.EvacuationPhase:
+                    NextPhase();
+                    return;
+                case GameState.Phase.WinState:
+                    myGameState.BackToMainMenu();
+                    return;
+                case GameState.Phase.PlanningPhase:
+                    myGameState.BackToMainMenu();
+                    return;
+            }
         }
 
         if (_currentPhase == GameState.Phase.WinState || _currentPhase == GameState.Phase.Unknown)
@@ -55,7 +74,7 @@ public class GamePhaseLoop : MonoBehaviour
         }
     }
 
-    public string GetTimerFormated()
+    public string GetTimerFormatted()
     {
         if (_currentPhase == GameState.Phase.EvacuationPhase)
         {
@@ -65,5 +84,4 @@ public class GamePhaseLoop : MonoBehaviour
 
         return "N/A";
     }
-    
 }

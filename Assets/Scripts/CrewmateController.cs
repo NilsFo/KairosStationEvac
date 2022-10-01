@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class CrewmateController : Phaseable
 {
@@ -25,10 +24,14 @@ public class CrewmateController : Phaseable
     public bool startFlipped;
 
     private Animator _animator;
-    public SpriteRenderer renderer;
+    public SpriteRenderer spriteRenderer;
     private static readonly int Left = Animator.StringToHash("left");
     private static readonly int Running = Animator.StringToHash("running");
 
+    
+    public bool rescued = false;
+    public GameObject graphicsObj;
+    
     public bool selected => Game.selectedCrewmate == this;
 
     // Start is called before the first frame update
@@ -37,7 +40,7 @@ public class CrewmateController : Phaseable
         Debug.Log("Start");
         _phaseLoop = FindObjectOfType<GamePhaseLoop>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animator = renderer.GetComponent<Animator>();
+        _animator = spriteRenderer.GetComponent<Animator>();
         _initialPosition = transform.position;
     }
 
@@ -63,6 +66,9 @@ public class CrewmateController : Phaseable
 
     public override void Reset() {
         _frame = 0;
+        rescued = false;
+        graphicsObj.SetActive(true);
+        gameObject.SetActive(true);
         transform.position = _initialPosition;
     }
     
@@ -142,7 +148,7 @@ public class CrewmateController : Phaseable
         // Set visuals
         _animator.SetBool(Running, false);
         _animator.SetBool(Left, startFlipped);
-        renderer.flipX = startFlipped;
+        spriteRenderer.flipX = startFlipped;
 
     }
 
@@ -167,6 +173,12 @@ public class CrewmateController : Phaseable
             selectorSmall.SetActive(false);
             selectorBig.SetActive(true);
         }
+    }
+
+    public void Rescue()
+    {
+        graphicsObj.SetActive(false);
+        rescued = true;
     }
 
     private void OnMouseEnter()
@@ -195,7 +207,7 @@ public class CrewmateController : Phaseable
         if ((_lastInput & 0b0000_1111) > 0) {
             _animator.SetBool(Running, true);
             _animator.SetBool(Left, (_lastInput & 0b0000_0100) > 0);
-            renderer.flipX = (_lastInput & 0b0000_0100) > 0;
+            spriteRenderer.flipX = (_lastInput & 0b0000_0100) > 0;
         } else {
             _animator.SetBool(Running, false);
         }
