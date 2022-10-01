@@ -10,6 +10,8 @@ public class CrewmateController : MonoBehaviour {
     private ushort[] _savedInputs = new ushort[n_frames];
     private int _frame;
     private Vector2 _initialPosition;
+    private ushort _lastInput;
+    public float speed = 1.5f;
     
     // Start is called before the first frame update
     void Start() {
@@ -17,32 +19,37 @@ public class CrewmateController : MonoBehaviour {
         _initialPosition = transform.position;
     }
 
+    void Update() {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+            _lastInput = (ushort)(_lastInput | 0b0000_1000);
+        }
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+            _lastInput = (ushort)(_lastInput | 0b0000_0100);
+        }
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
+            _lastInput = (ushort)(_lastInput | 0b0000_0010);
+        }
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+            _lastInput = (ushort)(_lastInput | 0b0000_0001);
+        }
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E)) {
+            _lastInput = (ushort)(_lastInput | 0b0001_0000);
+        }
+    }
+
     void Reset() {
         _frame = 0;
         transform.position = _initialPosition;
     }
     private void FixedUpdate() {
-        if (_frame > n_frames) {
+        if (_frame >= n_frames) {
             Reset();
         }
         ushort input = 0;
         if (userControlled) {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
-                input = (ushort)(input | 0b0000_1000);
-            }
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-                input = (ushort)(input | 0b0000_0100);
-            }
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
-                input = (ushort)(input | 0b0000_0010);
-            }
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
-                input = (ushort)(input | 0b0000_0001);
-            }
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E)) {
-                input = (ushort)(input | 0b0001_0000);
-            }
-            _savedInputs [_frame] = input;
+            _savedInputs [_frame] = _lastInput;
+            input = _lastInput;
+            //Debug.Log(input);
         } else if (_savedInputs != null) {
             input = _savedInputs [_frame];
         } else {
@@ -50,6 +57,7 @@ public class CrewmateController : MonoBehaviour {
         }
         ExecuteInput(input);
         
+        _lastInput = 0;
         _frame++;
     }
 
@@ -73,7 +81,8 @@ public class CrewmateController : MonoBehaviour {
         if ((input & 0b0010000) != 0) {
             interaction = true;
         }
-
+        if(movement.sqrMagnitude > 0)
+            movement.Normalize();
         Move(movement);
         if (interaction) {
             Interact();
@@ -83,6 +92,14 @@ public class CrewmateController : MonoBehaviour {
         Debug.Log("Character has interacted", this);
     }
     private void Move(Vector2 movement) {
-        _rigidbody2D.AddForce(movement * Time.fixedDeltaTime);
+        //Debug.Log(movement);
+        var position = transform.position;
+        _rigidbody2D.MovePosition(new Vector2(position.x, position.y) + movement * speed * Time.fixedDeltaTime);
     }
+
+    /*private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Default")) {
+            _rigidbody2D.
+        }
+    }*/
 }

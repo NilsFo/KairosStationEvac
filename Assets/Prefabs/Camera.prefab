@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 396202222}
   - component: {fileID: 396202223}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CameraBounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,10 +147,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0.99999994
-    height: 0.9998748
+    x: 0.0013850415
+    y: 0.0012315271
+    width: 0.9972299
+    height: 0.99753696
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -262,8 +262,8 @@ MonoBehaviour:
   m_AssetsPPU: 12
   m_RefResolutionX: 480
   m_RefResolutionY: 270
-  m_CropFrame: 4
-  m_GridSnapping: 1
+  m_CropFrame: 3
+  m_GridSnapping: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
