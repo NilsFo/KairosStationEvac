@@ -45,6 +45,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd1944410fe68d4ea7603d2ef363790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPhase: 0
+  onPhasePlaying:
+    m_PersistentCalls:
+      m_Calls: []
+  onPhasePlanning:
+    m_PersistentCalls:
+      m_Calls: []
+  onWin:
+    m_PersistentCalls:
+      m_Calls: []
+  onResetGameplay:
+    m_PersistentCalls:
+      m_Calls: []
+  selectedCrewmate: {fileID: 0}
+  floatingTextPrefab: {fileID: 6658745519226898469, guid: cceb498c7f8f7eb4eb839a2ef4ddd5f5, type: 3}
 --- !u!114 &1615903881619327072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,3 +73,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myGameState: {fileID: 2334163597147842441}
+  phaseLength: 10

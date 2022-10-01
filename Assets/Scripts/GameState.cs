@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,6 +27,8 @@ public class GameState : MonoBehaviour
     private List<CrewmateController> allCrewmates = new List<CrewmateController>();
     public CrewmateController selectedCrewmate;
     public int CrewmateCount => allCrewmates.Count;
+
+    public GameObject floatingTextPrefab;
 
     private void OnEnable()
     {
@@ -184,5 +187,18 @@ public class GameState : MonoBehaviour
     {
         print("Back to main menu.");
         // TODO implement
+    }
+
+    public void DisplayFloatingText(Vector3 position, string text, int duration, float fontSize = 0.69f,
+        float velocity_Y = 0.15f, float velocity_Z = 0f, float velocity_X = 0f)
+    {
+        var newObj = Instantiate(floatingTextPrefab, position, Quaternion.identity);
+        FloatingText flt = newObj.GetComponent<FloatingText>();
+        flt.text = text;
+        flt.duration = duration;
+        flt.velocity.y = velocity_Y;
+        flt.velocity.x = velocity_X;
+        flt.velocity.z = velocity_Z;
+        flt.fontSize = fontSize;
     }
 }
