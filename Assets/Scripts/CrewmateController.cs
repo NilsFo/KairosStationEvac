@@ -14,6 +14,7 @@ public class CrewmateController : Phaseable {
     private Vector2 _initialPosition;
     private ushort _lastInput;
     public float speed = 1.5f;
+    private bool _inputDown;
     
     // Start is called before the first frame update
     public override void Start() {
@@ -92,7 +93,11 @@ public class CrewmateController : Phaseable {
             movement.Normalize();
         Move(movement);
         if (interaction) {
-            Interact();
+            if(!_inputDown)
+                Interact();
+            _inputDown = true;
+        } else {
+            _inputDown = false;
         }
     }
     private void Interact() {
