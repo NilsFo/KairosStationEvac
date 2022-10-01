@@ -1,13 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractionBehaviourScript : MonoBehaviour
 {
+    public UnityEvent triggerEvent;
 
-    [SerializeField] private string triggerName;
-    [SerializeField] private bool isToggle = false;
+    private void Start()
+    {
+        triggerEvent ??= new UnityEvent();
+    }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -27,6 +28,6 @@ public class InteractionBehaviourScript : MonoBehaviour
 
     public void TriggerInteraction()
     {
-        Debug.Log("Triggert:" + triggerName + " toggle " + isToggle);
+        triggerEvent.Invoke();
     }
 }

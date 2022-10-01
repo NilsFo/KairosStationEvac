@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractorBehaviourScript : MonoBehaviour
 {
-
     private List<InteractionBehaviourScript> interactions;
 
     private void OnEnable()
