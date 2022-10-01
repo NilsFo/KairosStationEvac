@@ -249,7 +249,7 @@ MonoBehaviour:
       - m_Target: {fileID: 883773428451879285}
         m_TargetAssemblyTypeName: OnOffBehaviourScript, Assembly-CSharp
         m_MethodName: ToggleState
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
