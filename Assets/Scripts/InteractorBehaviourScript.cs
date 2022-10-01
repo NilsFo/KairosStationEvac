@@ -14,7 +14,7 @@ public class InteractorBehaviourScript : MonoBehaviour
     {
         interactions.Add(interactionBehaviourScript);
     }
-    
+
     public void RemoveInteraction(InteractionBehaviourScript interactionBehaviourScript)
     {
         interactions.Remove(interactionBehaviourScript);
