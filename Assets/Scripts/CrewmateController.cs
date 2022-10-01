@@ -32,7 +32,7 @@ public class CrewmateController : Phaseable
     public bool rescued = false;
     public GameObject graphicsObj;
     
-    public bool selected => Game.selectedCrewmate == this;
+    public bool SelectedForEvac => Game.selectedCrewmate == this;
 
     // Start is called before the first frame update
     public override void Start() {
@@ -141,6 +141,10 @@ public class CrewmateController : Phaseable
             _savedInputs = new ushort[n_frames];
         }
         UpdateSelector();
+        if (SelectedForEvac)
+        {
+            Game.DisplayFloatingText(transform.position,"'Get me out of here!'",5);
+        }
     }
     public override void PhasePlanning() {
         UpdateSelector();
@@ -163,7 +167,7 @@ public class CrewmateController : Phaseable
             return;
         }
 
-        if (mouseOver ||selected)
+        if (mouseOver ||SelectedForEvac)
         {
             selectorSmall.SetActive(true);
             selectorBig.SetActive(false);
@@ -177,6 +181,7 @@ public class CrewmateController : Phaseable
 
     public void Rescue()
     {
+        Game.DisplayFloatingText(transform.position,"'I am safe!'",5);
         graphicsObj.SetActive(false);
         rescued = true;
     }
