@@ -113,7 +113,7 @@ public class GameState : MonoBehaviour
         // Setting player control
         foreach (CrewmateController c in allCrewmates)
         {
-            c.userControlled = false;
+            c.playerControlled = false;
         }
 
         if (selectedCrewmate == null)
@@ -123,7 +123,7 @@ public class GameState : MonoBehaviour
             return;
         }
 
-        selectedCrewmate.userControlled = true;
+        selectedCrewmate.playerControlled = true;
     }
 
     private void OnPhasePlanning()

@@ -13,7 +13,6 @@ public class InteractionBehaviourScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         var interactor = col.gameObject.GetComponent<InteractorBehaviourScript>();
-        Debug.Log("Enter", this);
         if(interactor == null) return;
 
         interactor.AddInteraction(this);

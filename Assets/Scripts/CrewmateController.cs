@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CrewmateController : Phaseable
 {
@@ -13,7 +14,7 @@ public class CrewmateController : Phaseable
     private GamePhaseLoop _phaseLoop;
 
     private Rigidbody2D _rigidbody2D;
-    public bool userControlled;
+    public bool playerControlled;
     private static int n_frames = 50 * 10; 
     private ushort[] _savedInputs = new ushort[n_frames];
     private int _frame;
@@ -21,7 +22,13 @@ public class CrewmateController : Phaseable
     private ushort _lastInput;
     public float speed = 1.5f;
     private bool _inputDown;
-    
+    public bool startFlipped;
+
+    private Animator _animator;
+    public SpriteRenderer renderer;
+    private static readonly int Left = Animator.StringToHash("left");
+    private static readonly int Running = Animator.StringToHash("running");
+
     public bool selected => Game.selectedCrewmate == this;
 
     // Start is called before the first frame update
@@ -30,24 +37,27 @@ public class CrewmateController : Phaseable
         Debug.Log("Start");
         _phaseLoop = FindObjectOfType<GamePhaseLoop>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = renderer.GetComponent<Animator>();
         _initialPosition = transform.position;
     }
 
     void Update() {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-            _lastInput = (ushort)(_lastInput | 0b0000_1000);
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            _lastInput = (ushort)(_lastInput | 0b0000_0100);
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-            _lastInput = (ushort)(_lastInput | 0b0000_0010);
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            _lastInput = (ushort)(_lastInput | 0b0000_0001);
-        }
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E)) {
-            _lastInput = (ushort)(_lastInput | 0b0001_0000);
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled) {
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+                _lastInput = (ushort)(_lastInput | 0b0000_1000);
+            }
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+                _lastInput = (ushort)(_lastInput | 0b0000_0100);
+            }
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
+                _lastInput = (ushort)(_lastInput | 0b0000_0010);
+            }
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+                _lastInput = (ushort)(_lastInput | 0b0000_0001);
+            }
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E)) {
+                _lastInput = (ushort)(_lastInput | 0b0001_0000);
+            }
         }
     }
 
@@ -61,20 +71,21 @@ public class CrewmateController : Phaseable
             if (_frame >= n_frames) {
                 return;
             }
-            ushort input = 0;
-            if (userControlled) {
+            if (playerControlled) {
                 _savedInputs [_frame] = _lastInput;
-                input = _lastInput;
                 //Debug.Log(input);
             } else if (_savedInputs != null) {
-                input = _savedInputs [_frame];
+                _lastInput = _savedInputs [_frame];
             } else {
                 // Stand around and die
             }
-            ExecuteInput(input);
+            ExecuteInput(_lastInput);
         
+            Animate();
+            
             _lastInput = 0;
             _frame++;
+
         }
     }
 
@@ -120,10 +131,19 @@ public class CrewmateController : Phaseable
     }
 
     public override void PhaseEvacuate() {
+        if (playerControlled) {
+            _savedInputs = new ushort[n_frames];
+        }
         UpdateSelector();
     }
     public override void PhasePlanning() {
         UpdateSelector();
+        
+        // Set visuals
+        _animator.SetBool(Running, false);
+        _animator.SetBool(Left, startFlipped);
+        renderer.flipX = startFlipped;
+
     }
 
     public void UpdateSelector()
@@ -169,5 +189,16 @@ public class CrewmateController : Phaseable
             Game.selectedCrewmate = this;
             _phaseLoop.NextPhase();
         }
+    }
+
+    private void Animate() {
+        if ((_lastInput & 0b0000_1111) > 0) {
+            _animator.SetBool(Running, true);
+            _animator.SetBool(Left, (_lastInput & 0b0000_0100) > 0);
+            renderer.flipX = (_lastInput & 0b0000_0100) > 0;
+        } else {
+            _animator.SetBool(Running, false);
+        }
+
     }
 }
