@@ -38,7 +38,7 @@ public class GamePhaseLoop : MonoBehaviour
     {
         if (currentState == GameState.State.PlanningPhase)
         {
-            myGameState.currentState = GameState.State.PlayPhase;
+            myGameState.currentState = GameState.State.EvacuationPhase;
         }
         else
         {

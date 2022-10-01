@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class CrewmateController : MonoBehaviour {
+public class CrewmateController : Phaseable {
+
     private Rigidbody2D _rigidbody2D;
     public bool userControlled;
-    private static int n_frames = 60 * 10; 
+    private static int n_frames = 50 * 10; 
     private ushort[] _savedInputs = new ushort[n_frames];
     private int _frame;
     private Vector2 _initialPosition;
@@ -14,7 +16,8 @@ public class CrewmateController : MonoBehaviour {
     public float speed = 1.5f;
     
     // Start is called before the first frame update
-    void Start() {
+    public override void Start() {
+        base.Start();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _initialPosition = transform.position;
     }
@@ -37,28 +40,31 @@ public class CrewmateController : MonoBehaviour {
         }
     }
 
-    void Reset() {
+    public override void Reset() {
         _frame = 0;
         transform.position = _initialPosition;
     }
+    
     private void FixedUpdate() {
-        if (_frame >= n_frames) {
-            Reset();
-        }
-        ushort input = 0;
-        if (userControlled) {
-            _savedInputs [_frame] = _lastInput;
-            input = _lastInput;
-            //Debug.Log(input);
-        } else if (_savedInputs != null) {
-            input = _savedInputs [_frame];
-        } else {
-            // Stand around and die
-        }
-        ExecuteInput(input);
+        if (Game.currentState == GameState.State.EvacuationPhase) {
+            if (_frame >= n_frames) {
+                return;
+            }
+            ushort input = 0;
+            if (userControlled) {
+                _savedInputs [_frame] = _lastInput;
+                input = _lastInput;
+                //Debug.Log(input);
+            } else if (_savedInputs != null) {
+                input = _savedInputs [_frame];
+            } else {
+                // Stand around and die
+            }
+            ExecuteInput(input);
         
-        _lastInput = 0;
-        _frame++;
+            _lastInput = 0;
+            _frame++;
+        }
     }
 
     // 0001 1111
@@ -97,9 +103,8 @@ public class CrewmateController : MonoBehaviour {
         _rigidbody2D.MovePosition(new Vector2(position.x, position.y) + movement * speed * Time.fixedDeltaTime);
     }
 
-    /*private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Default")) {
-            _rigidbody2D.
-        }
-    }*/
+    public override void PhaseEvacuate() {
+    }
+    public override void PhasePlanning() {
+    }
 }

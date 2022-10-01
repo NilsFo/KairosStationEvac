@@ -9,7 +9,7 @@ public class GameState : MonoBehaviour
     public enum State
     {
         Unknown,
-        PlayPhase,
+        EvacuationPhase,
         PlanningPhase,
         WinState
     }
@@ -64,7 +64,7 @@ public class GameState : MonoBehaviour
                 ResetAndCleanUp();
                 onResetGameplay.Invoke();
                 break;
-            case State.PlayPhase:
+            case State.EvacuationPhase:
                 onStatePlaying.Invoke();
                 break;
             case State.WinState:
