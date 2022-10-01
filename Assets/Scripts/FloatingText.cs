@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FloatingText : MonoBehaviour
 {
-    public Color textColor=Color.white;
-    
+    public Color textColor = Color.white;
+
     public TMPro.TextMeshProUGUI textMesh;
     public float fontSize = 5;
     public string text;
@@ -17,7 +17,7 @@ public class FloatingText : MonoBehaviour
     void Start()
     {
         if (text == null) text = " ";
-        
+
         durationCurrent = duration;
         textMesh.text = text;
         textMesh.color = textColor;

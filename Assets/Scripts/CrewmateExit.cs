@@ -7,8 +7,7 @@ public class CrewmateExit : MonoBehaviour
     public void RescueCrewmate(GameObject caller)
     {
         CrewmateController controller = caller.GetComponent<CrewmateController>();
-        if(controller == null) return;
+        if (controller == null) return;
         controller.Rescue();
     }
-
 }

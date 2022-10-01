@@ -132,7 +132,7 @@ public class GameState : MonoBehaviour
     private void OnPhaseEvacuate()
     {
         onPhasePlaying.Invoke();
-        
+
         // Setting player control
         foreach (CrewmateController c in allCrewmates)
         {
@@ -140,7 +140,7 @@ public class GameState : MonoBehaviour
         }
 
         selectedCrewmate.playerControlled = true;
-        
+
         foreach (var p in myObservers)
         {
             p.PhaseEvacuate();
@@ -152,7 +152,6 @@ public class GameState : MonoBehaviour
             currentPhase = Phase.Unknown;
             return;
         }
-
     }
 
     private void OnPhasePlanning()
