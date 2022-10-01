@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304339517}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CameraFocus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -147,10 +147,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0013850415
-    y: 0.0012315271
-    width: 0.9972299
-    height: 0.99753696
+    x: 0.094137534
+    y: 0.09418838
+    width: 0.8117249
+    height: 0.8116233
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -278,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6306342675273665948}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 2391607774165818470}
   - component: {fileID: 4285809036935560505}
   - component: {fileID: 122502555467026256}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 5971309649411997669}
   - component: {fileID: 5971309649411997671}
   - component: {fileID: 5971309649411997670}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CM vcam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
