@@ -708,7 +708,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 1
+      m_AllTileFlags: 1073741825
   - first: {x: 6, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -1621,6 +1621,142 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1023184609
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 168945772979542318, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209638553193903711, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_Name
+      value: IngameLaserEmitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210922161351815679, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: initiallyOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: InitState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmEnableEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmDisableEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1380310631}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1380310631}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TurnOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TurnOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LaserEmitter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LaserEmitter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: OmDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+--- !u!114 &1380310631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5210922161351815679, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+  m_PrefabInstance: {fileID: 1023184609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036caf570d72a1e43a574feaba26456d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1560462840
 GameObject:
   m_ObjectHideFlags: 0
@@ -4435,7 +4571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5616483732406429910, guid: 82b59721009e7b140a481d132abb42c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5616483732406429910, guid: 82b59721009e7b140a481d132abb42c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4488,19 +4624,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.0013850415
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.0012315271
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.9972299
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.99753696
       objectReference: {fileID: 0}
     - target: {fileID: 519420032, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_LocalPosition.x

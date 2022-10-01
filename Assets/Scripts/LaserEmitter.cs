@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,8 +69,14 @@ public class LaserEmitter : Phaseable
         laserSegment.SetActive(false);
     }
 
-    public void UpdateLaserSegments()
-    {
+    private void FixedUpdate() {
+        if(currentlyOn && Game.currentPhase == GameState.Phase.EvacuationPhase)
+            UpdateLaserSegments();
+    }
+
+    public void UpdateLaserSegments() {
+        if (Game.currentPhase != GameState.Phase.EvacuationPhase)
+            return;
         laserRayTarget = null;
         
         int layer = LayerMask.GetMask("Default");
@@ -80,8 +87,8 @@ public class LaserEmitter : Phaseable
             float distance = Mathf.Abs(hit.point.y - transform.position.y);
             distance = hit.distance;
             var destination = hit.point;
-            Debug.Log("hit", hit.transform.gameObject);
-            Debug.Log("Distance: "+distance);
+            //Debug.Log("hit", hit.transform.gameObject);
+            //Debug.Log("Distance: "+distance);
 
             Vector3 laserPos = new Vector3();
             laserPos.y = laserPos.y + distance / 2;

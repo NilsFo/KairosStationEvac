@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 2344044034692930154}
   - component: {fileID: 6216624778955670104}
   - component: {fileID: 3364912768194578611}
+  - component: {fileID: 237621546222397555}
   m_Layer: 3
   m_Name: Crewmate
   m_TagString: Untagged
@@ -379,6 +380,34 @@ CapsuleCollider2D:
   m_Offset: {x: 0.041478902, y: 0.1660888}
   m_Size: {x: 0.25119478, y: 0.3322576}
   m_Direction: 0
+--- !u!114 &237621546222397555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987544432808002000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f7882a35e337a41a96fef992577441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakTime: 0.2
+  brokenByLaser:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8149559462076576663}
+        m_TargetAssemblyTypeName: CrewmateController, Assembly-CSharp
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8608343975106054776
 GameObject:
   m_ObjectHideFlags: 0

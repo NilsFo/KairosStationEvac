@@ -81,7 +81,7 @@ public class ExplosionBehaviourScript : Phaseable
         if(controller == null) return;
         if (isOnFire)
         {
-            //TODO Crew kill
+            controller.Kill();
             return;
         }
         _crewmateControllers.Add(controller);
