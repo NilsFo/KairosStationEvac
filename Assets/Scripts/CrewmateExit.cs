@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CrewmateExit : MonoBehaviour
 {
-
-    public void RescueCrewmate(CrewmateController crewmateController)
+    public void RescueCrewmate(GameObject caller)
     {
-        crewmateController.Rescue();
+        CrewmateController controller = caller.GetComponent<CrewmateController>();
+        if(controller == null) return;
+        controller.Rescue();
     }
 
 }

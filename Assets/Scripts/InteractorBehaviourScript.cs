@@ -24,7 +24,7 @@ public class InteractorBehaviourScript : MonoBehaviour
     {
         for (int i = 0; i < interactions.Count; i++)
         {
-            interactions[i].TriggerInteraction();
+            interactions[i].TriggerInteraction(gameObject);
         }
     }
 }

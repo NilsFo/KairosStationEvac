@@ -334,7 +334,7 @@ MonoBehaviour:
       - m_Target: {fileID: 766037150873593411}
         m_TargetAssemblyTypeName: OnOffBehaviourScript, Assembly-CSharp
         m_MethodName: SetStateOn
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -358,7 +358,7 @@ MonoBehaviour:
   offGameObject: {fileID: 1084816109467657322}
   onGameObject: {fileID: 1775273823129151947}
   disableGameObject: {fileID: 1114426238624102020}
-  IsToggleable: 1
+  IsToggleable: 0
   InitState: 0
   InitActiveEnable: 1
   currentState: 0
@@ -371,7 +371,19 @@ MonoBehaviour:
       m_Calls: []
   OmActivateEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6911392858734182889}
+        m_TargetAssemblyTypeName: CrewmateExit, Assembly-CSharp
+        m_MethodName: RescueCrewmate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OmDeactivateEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -19,11 +19,11 @@ public class OnOffBehaviourScript : Phaseable
     [SerializeField] private bool currentActiveEnable;
     
     [Header("Events")]
-    public UnityEvent OmEnableEvent;
-    public UnityEvent OmDisableEvent;
+    public UnityEvent<GameObject> OmEnableEvent;
+    public UnityEvent<GameObject> OmDisableEvent;
     
-    public UnityEvent OmActivateEvent;
-    public UnityEvent OmDeactivateEvent;
+    public UnityEvent<GameObject> OmActivateEvent;
+    public UnityEvent<GameObject> OmDeactivateEvent;
     
     // Crewmate rescue
     private CrewmateExit _crewmateExit;
@@ -32,10 +32,10 @@ public class OnOffBehaviourScript : Phaseable
     {
         base.Start();
         _crewmateExit = GetComponent<CrewmateExit>();
-        OmEnableEvent ??= new UnityEvent();
-        OmDisableEvent ??= new UnityEvent();
-        OmActivateEvent ??= new UnityEvent();
-        OmDeactivateEvent ??= new UnityEvent();
+        OmEnableEvent ??= new UnityEvent<GameObject>();
+        OmDisableEvent ??= new UnityEvent<GameObject>();
+        OmActivateEvent ??= new UnityEvent<GameObject>();
+        OmDeactivateEvent ??= new UnityEvent<GameObject>();
         
         ResetState();
     }
@@ -57,7 +57,7 @@ public class OnOffBehaviourScript : Phaseable
     public override void PhasePlanning() {
         ResetState();
     }
-    public void ToggleState()
+    public void ToggleState(GameObject caller)
     {
         if(!currentActiveEnable) return;
         if(!IsToggleable && currentState != InitState) return;
@@ -71,59 +71,46 @@ public class OnOffBehaviourScript : Phaseable
         }
         if (currentState)
         {
-            OmActivateEvent.Invoke();
-            
-            // rescuing crewmates if possible
-            // TODO add crewmate here
-            CrewmateController crewmateController = GetActivatedCrewmate();
-            if (_crewmateExit != null && crewmateController!=null)
-            {
-                _crewmateExit.RescueCrewmate(crewmateController);
-            }
+            OmActivateEvent.Invoke(caller);
         }
         else
         {
-            OmDeactivateEvent.Invoke();
+            OmDeactivateEvent.Invoke(caller);
         }
         UpdateState();
     }
 
-    private CrewmateController GetActivatedCrewmate(){
-        // TODO implement
-        return null;
-    }
-
-    public void SetStateOn()
+    public void SetStateOn(GameObject caller)
     {
         if(!currentActiveEnable) return;
         if(!IsToggleable && currentState != InitState) return;
         currentState = true;
-        OmActivateEvent.Invoke();
+        OmActivateEvent.Invoke(caller);
         UpdateState();
     }
     
-    public void SetStateOff()
+    public void SetStateOff(GameObject caller)
     {
         if(!currentActiveEnable) return;
         if(!IsToggleable && currentState != InitState) return;
         currentState = false;
-        OmDeactivateEvent.Invoke();
+        OmDeactivateEvent.Invoke(caller);
         UpdateState();
     }
 
-    public void EnabelInteraktion()
+    public void EnabelInteraktion(GameObject caller)
     {
         if (currentActiveEnable) return;
         currentActiveEnable = true;
-        OmEnableEvent.Invoke();
+        OmEnableEvent.Invoke(caller);
         UpdateState();
     }
     
-    public void DisableInteraktion()
+    public void DisableInteraktion(GameObject caller)
     {
         if (!currentActiveEnable) return;
         currentActiveEnable = false;
-        OmDisableEvent.Invoke();
+        OmDisableEvent.Invoke(caller);
         UpdateState();
     }
 

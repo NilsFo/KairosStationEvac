@@ -3,11 +3,11 @@ using UnityEngine.Events;
 
 public class InteractionBehaviourScript : MonoBehaviour
 {
-    public UnityEvent triggerEvent;
+    public UnityEvent<GameObject> triggerEvent;
 
     private void Start()
     {
-        triggerEvent ??= new UnityEvent();
+        triggerEvent ??= new UnityEvent<GameObject>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -26,8 +26,8 @@ public class InteractionBehaviourScript : MonoBehaviour
         interactor.RemoveInteraction(this);
     }
 
-    public void TriggerInteraction()
+    public void TriggerInteraction(GameObject currentGameObject)
     {
-        triggerEvent.Invoke();
+        triggerEvent.Invoke(currentGameObject);
     }
 }
