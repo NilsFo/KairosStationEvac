@@ -501,6 +501,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734464382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6266806977647056688, guid: a08414568cf5d0a49a4928baa66da6d8, type: 3}
+  m_PrefabInstance: {fileID: 8361208449270818796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &795775329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2774,6 +2785,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
+      propertyPath: orthographic size
+      value: 4.821429
+      objectReference: {fileID: 0}
+    - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.9998748
+      objectReference: {fileID: 0}
     - target: {fileID: 2998507215939991226, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_Name
       value: Camera
@@ -2831,6 +2854,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2424004221094923543, guid: a08414568cf5d0a49a4928baa66da6d8, type: 3}
+      propertyPath: gameStateText
+      value: 
+      objectReference: {fileID: 734464382}
     - target: {fileID: 2972807125772010668, guid: a08414568cf5d0a49a4928baa66da6d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
