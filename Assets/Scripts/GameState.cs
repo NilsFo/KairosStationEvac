@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class GameState : MonoBehaviour
 {
-    public enum State
+    public enum Phase
     {
         Unknown,
         EvacuationPhase,
@@ -15,21 +15,41 @@ public class GameState : MonoBehaviour
     }
 
     private bool firstCleanDone = false;
-    public State currentState = State.Unknown;
-    private State _lastKnownState;
-    public UnityEvent onStatePlaying;
-    public UnityEvent onStatePlanning;
-    public UnityEvent onStateWin;
+    public Phase currentPhase = Phase.Unknown;
+    private Phase _lastKnownPhase;
+    public UnityEvent onPhasePlaying;
+    public UnityEvent onPhasePlanning;
+    public UnityEvent onWin;
     public UnityEvent onResetGameplay;
+
+    private List<Phaseable> myObservers;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (onStatePlaying == null) onStatePlaying = new UnityEvent();
-        if (onStatePlanning == null) onStatePlanning = new UnityEvent();
-        if (onStateWin == null) onStateWin = new UnityEvent();
+        myObservers = new List<Phaseable>();
+        if (onPhasePlaying == null) onPhasePlaying = new UnityEvent();
+        if (onPhasePlanning == null) onPhasePlanning = new UnityEvent();
+        if (onWin == null) onWin = new UnityEvent();
         if (onResetGameplay == null) onResetGameplay = new UnityEvent();
     }
+
+    public void SubscribeToPhases(Phaseable p)
+    {
+        if (!myObservers.Contains(p))
+        {
+            myObservers.Add(p);
+        }
+    }
+
+    public void UnsubscribeFromPhases(Phaseable p)
+    {
+        if (myObservers.Contains(p))
+        {
+            myObservers.Remove(p);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -40,35 +60,50 @@ public class GameState : MonoBehaviour
             ResetAndCleanUp();
         }
 
-        if (_lastKnownState != currentState)
+        if (_lastKnownPhase != currentPhase)
         {
             OnStateChanged();
-            _lastKnownState = currentState;
+            _lastKnownPhase = currentPhase;
         }
     }
 
     public void WinGame()
     {
         print("A winner is you!");
-        currentState = State.WinState;
+        currentPhase = Phase.WinState;
     }
 
     private void OnStateChanged()
     {
-        print("The state has changed. From: '" + _lastKnownState + "' to '" + currentState);
+        print("The state has changed. From: '" + _lastKnownPhase + "' to '" + currentPhase);
         //TODO callback to other elements??
 
-        switch (currentState)
+        switch (currentPhase)
         {
-            case State.PlanningPhase:
+            case Phase.PlanningPhase:
                 ResetAndCleanUp();
-                onResetGameplay.Invoke();
+                onPhasePlanning.Invoke();
+                foreach (var p in myObservers)
+                {
+                    p.PhasePlanning();
+                }
+
                 break;
-            case State.EvacuationPhase:
-                onStatePlaying.Invoke();
+            case Phase.EvacuationPhase:
+                onPhasePlaying.Invoke();
+                foreach (var p in myObservers)
+                {
+                    p.PhaseEvacuate();
+                }
+
                 break;
-            case State.WinState:
-                onStateWin.Invoke();
+            case Phase.WinState:
+                onWin.Invoke();
+                foreach (var p in myObservers)
+                {
+                    p.PhaseWin();
+                }
+
                 break;
         }
     }
@@ -76,7 +111,10 @@ public class GameState : MonoBehaviour
     private void ResetAndCleanUp()
     {
         onResetGameplay.Invoke();
-        // TODO Implement
-        // When this is called, reset all objects for the next loop
+
+        foreach (var p in myObservers)
+        {
+            p.Reset();
+        }
     }
 }
