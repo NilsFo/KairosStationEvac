@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,12 @@ public class OnOffBehaviourScript : MonoBehaviour
 
     [SerializeField] private bool InitState = false;
     
-    private bool currentState;
+    [SerializeField] private bool currentState;
+
+    private void Start()
+    {
+        ResetState();
+    }
 
     public void ResetState()
     {
@@ -19,17 +25,20 @@ public class OnOffBehaviourScript : MonoBehaviour
 
     public void ToggleState()
     {
-        
+        currentState = !currentState;
+        UpdateState();
     }
 
     public void SetStateOn()
     {
         currentState = true;
+        UpdateState();
     }
     
     public void SetStateOff()
     {
         currentState = false;
+        UpdateState();
     }
 
     private void UpdateState()
