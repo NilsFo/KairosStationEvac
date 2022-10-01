@@ -25,6 +25,7 @@ public class GameState : MonoBehaviour
     private List<Phaseable> myObservers = new List<Phaseable>();
     private List<CrewmateController> allCrewmates = new List<CrewmateController>();
     public CrewmateController selectedCrewmate;
+    public int CrewmateCount => allCrewmates.Count;
 
     private void OnEnable()
     {
@@ -76,7 +77,30 @@ public class GameState : MonoBehaviour
         }
     }
 
-    public void WinGame()
+    public int GetRescuedCrewmateCount()
+    {
+        int rescueCount = 0;
+        foreach (CrewmateController crewmateController in allCrewmates)
+        {
+            if (crewmateController.rescued)
+            {
+                rescueCount++;
+            }
+        }
+
+        return rescueCount;
+    }
+
+    public void CheckWinCondition()
+    {
+        int rescueCount = GetRescuedCrewmateCount();
+        if (rescueCount == CrewmateCount)
+        {
+            WinGame();
+        }
+    }
+
+    private void WinGame()
     {
         selectedCrewmate = null;
         print("A winner is you!");
@@ -154,5 +178,11 @@ public class GameState : MonoBehaviour
         {
             p.Reset();
         }
+    }
+
+    public void BackToMainMenu()
+    {
+        print("Back to main menu.");
+        // TODO implement
     }
 }

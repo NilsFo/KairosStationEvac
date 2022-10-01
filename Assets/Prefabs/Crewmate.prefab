@@ -305,6 +305,8 @@ MonoBehaviour:
   selectorBig: {fileID: 2250066046801806021}
   userControlled: 0
   speed: 2.5
+  rescued: 0
+  graphicsObj: {fileID: 149923621}
 --- !u!50 &2344044034692930154
 Rigidbody2D:
   serializedVersion: 4

@@ -7,7 +7,7 @@ public class OnOffBehaviourScript : Phaseable
     [SerializeField] private GameObject offGameObject;
     [SerializeField] private GameObject onGameObject;
     [SerializeField] private GameObject disableGameObject;
-
+    
     [Header("Init && Reset Field-Values")]
     [SerializeField] private bool IsToggleable = true;
     [SerializeField] private bool InitState = false;
@@ -24,10 +24,14 @@ public class OnOffBehaviourScript : Phaseable
     
     public UnityEvent OmActivateEvent;
     public UnityEvent OmDeactivateEvent;
+    
+    // Crewmate rescue
+    private CrewmateExit _crewmateExit;
 
     public override void Start()
     {
         base.Start();
+        _crewmateExit = GetComponent<CrewmateExit>();
         OmEnableEvent ??= new UnityEvent();
         OmDisableEvent ??= new UnityEvent();
         OmActivateEvent ??= new UnityEvent();
@@ -68,12 +72,25 @@ public class OnOffBehaviourScript : Phaseable
         if (currentState)
         {
             OmActivateEvent.Invoke();
+            
+            // rescuing crewmates if possible
+            // TODO add crewmate here
+            CrewmateController crewmateController = GetActivatedCrewmate();
+            if (_crewmateExit != null && crewmateController!=null)
+            {
+                _crewmateExit.RescueCrewmate(crewmateController);
+            }
         }
         else
         {
             OmDeactivateEvent.Invoke();
         }
         UpdateState();
+    }
+
+    private CrewmateController GetActivatedCrewmate(){
+        // TODO implement
+        return null;
     }
 
     public void SetStateOn()

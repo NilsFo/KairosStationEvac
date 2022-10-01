@@ -22,6 +22,9 @@ public class CrewmateController : Phaseable
     public float speed = 1.5f;
     private bool _inputDown;
     
+    public bool rescued = false;
+    public GameObject graphicsObj;
+    
     public bool selected => Game.selectedCrewmate == this;
 
     // Start is called before the first frame update
@@ -53,6 +56,9 @@ public class CrewmateController : Phaseable
 
     public override void Reset() {
         _frame = 0;
+        rescued = false;
+        graphicsObj.SetActive(true);
+        gameObject.SetActive(true);
         transform.position = _initialPosition;
     }
     
@@ -147,6 +153,12 @@ public class CrewmateController : Phaseable
             selectorSmall.SetActive(false);
             selectorBig.SetActive(true);
         }
+    }
+
+    public void Rescue()
+    {
+        graphicsObj.SetActive(false);
+        rescued = true;
     }
 
     private void OnMouseEnter()

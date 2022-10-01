@@ -19,6 +19,7 @@ public class UILogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameStateText.text = "State: " + _gameState.currentPhase+" ["+_phaseLoop.GetTimerFormated()+"]";
+        gameStateText.text = "State: " + _gameState.currentPhase + " [" + _phaseLoop.GetTimerFormatted() +
+                             "]. Rescued: " + _gameState.GetRescuedCrewmateCount() + "/" + _gameState.CrewmateCount;
     }
 }
