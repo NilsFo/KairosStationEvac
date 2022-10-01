@@ -19,23 +19,32 @@ public class GamePhaseLoop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
         _currentPhase = myGameState.currentPhase;
+
+        if (_currentPhase == GameState.Phase.Unknown)
+        {
+            Debug.LogError("UNKNOWN SATE!");
+        }
 
         if (_currentPhase == GameState.Phase.WinState || _currentPhase == GameState.Phase.Unknown)
         {
             return;
         }
 
-        if (timer >= phaseLength)
+        if (_currentPhase == GameState.Phase.EvacuationPhase)
         {
-            timer = 0;
-            NextPhase();
+            timer += Time.deltaTime;
+            if (timer >= phaseLength)
+            {
+                timer = 0;
+                NextPhase();
+            }
         }
     }
 
     public void NextPhase()
     {
+        timer = 0;
         if (_currentPhase == GameState.Phase.PlanningPhase)
         {
             myGameState.currentPhase = GameState.Phase.EvacuationPhase;
@@ -45,4 +54,16 @@ public class GamePhaseLoop : MonoBehaviour
             myGameState.currentPhase = GameState.Phase.PlanningPhase;
         }
     }
+
+    public string GetTimerFormated()
+    {
+        if (_currentPhase == GameState.Phase.EvacuationPhase)
+        {
+            int i = (int) timer;
+            return (phaseLength - i).ToString();
+        }
+
+        return "N/A";
+    }
+    
 }

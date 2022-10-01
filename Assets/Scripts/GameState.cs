@@ -23,6 +23,17 @@ public class GameState : MonoBehaviour
     public UnityEvent onResetGameplay;
 
     private List<Phaseable> myObservers = new List<Phaseable>();
+    private List<CrewmateController> allCrewmates = new List<CrewmateController>();
+    public CrewmateController selectedCrewmate;
+
+    private void OnEnable()
+    {
+        var crewmates = FindObjectsOfType<CrewmateController>();
+        foreach (CrewmateController c in crewmates)
+        {
+            allCrewmates.Add(c);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +60,6 @@ public class GameState : MonoBehaviour
         }
     }
 
-
     // Update is called once per frame
     void Update()
     {
@@ -68,6 +78,7 @@ public class GameState : MonoBehaviour
 
     public void WinGame()
     {
+        selectedCrewmate = null;
         print("A winner is you!");
         currentPhase = Phase.WinState;
     }
@@ -80,36 +91,64 @@ public class GameState : MonoBehaviour
         switch (currentPhase)
         {
             case Phase.PlanningPhase:
-                ResetAndCleanUp();
-                onPhasePlanning.Invoke();
-                foreach (var p in myObservers)
-                {
-                    p.PhasePlanning();
-                }
-
+                OnPhasePlanning();
                 break;
             case Phase.EvacuationPhase:
-                onPhasePlaying.Invoke();
-                foreach (var p in myObservers)
-                {
-                    p.PhaseEvacuate();
-                }
-
+                OnPhaseEvacuate();
                 break;
             case Phase.WinState:
-                onWin.Invoke();
-                foreach (var p in myObservers)
-                {
-                    p.PhaseWin();
-                }
-
+                OnPhaseWin();
                 break;
+        }
+    }
+
+    private void OnPhaseEvacuate()
+    {
+        onPhasePlaying.Invoke();
+        foreach (var p in myObservers)
+        {
+            p.PhaseEvacuate();
+        }
+
+        // Setting player control
+        foreach (CrewmateController c in allCrewmates)
+        {
+            c.userControlled = false;
+        }
+
+        if (selectedCrewmate == null)
+        {
+            Debug.LogError("BIG ERROR! NO CREWMATE SELECTED!!!!");
+            currentPhase = Phase.Unknown;
+            return;
+        }
+
+        selectedCrewmate.userControlled = true;
+    }
+
+    private void OnPhasePlanning()
+    {
+        ResetAndCleanUp();
+        onPhasePlanning.Invoke();
+        foreach (var p in myObservers)
+        {
+            p.PhasePlanning();
+        }
+    }
+
+    private void OnPhaseWin()
+    {
+        onWin.Invoke();
+        foreach (var p in myObservers)
+        {
+            p.PhaseWin();
         }
     }
 
     private void ResetAndCleanUp()
     {
         onResetGameplay.Invoke();
+        selectedCrewmate = null;
 
         foreach (var p in myObservers)
         {
