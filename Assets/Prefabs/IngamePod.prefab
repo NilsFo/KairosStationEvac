@@ -271,5 +271,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offGameObject: {fileID: 1084816109467657322}
   onGameObject: {fileID: 1775273823129151947}
+  disableGameObject: {fileID: 0}
+  IsToggleable: 1
   InitState: 0
+  InitActiveEnable: 1
   currentState: 0
+  currentActiveEnable: 0
+  OmEnableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OmDisableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OmActivateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OmDeactivateEvent:
+    m_PersistentCalls:
+      m_Calls: []
