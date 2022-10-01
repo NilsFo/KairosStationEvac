@@ -27,7 +27,7 @@ public class CrewmateController : Phaseable
     private static readonly int Left = Animator.StringToHash("left");
     private static readonly int Running = Animator.StringToHash("running");
 
-
+    private bool alive = true;
     public bool rescued = false;
     public GameObject graphicsObj;
 
@@ -37,7 +37,8 @@ public class CrewmateController : Phaseable
     public override void Start()
     {
         base.Start();
-        //Debug.Log("Start");
+
+        alive = true;
         _phaseLoop = FindObjectOfType<GamePhaseLoop>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = spriteRenderer.GetComponent<Animator>();
@@ -80,6 +81,7 @@ public class CrewmateController : Phaseable
         _frame = 0;
         _lastInput = 0;
         rescued = false;
+        alive = true;
         graphicsObj.SetActive(true);
         gameObject.SetActive(true);
         transform.position = _initialPosition;
@@ -236,6 +238,20 @@ public class CrewmateController : Phaseable
         // if (Game.currentPhase==GameState.Phase.EvacuationPhase && SelectedForEvac) {
         //     _phaseLoop.NextPhase();
         // }
+    }
+
+    public void Kill()
+    {
+        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'", 5);
+        if (!alive)
+        {
+            Debug.LogError("Do you want to kill something that is already dead?????");
+            Game.currentPhase = GameState.Phase.Unknown;
+            return;
+        }
+
+        graphicsObj.SetActive(false);
+        alive = false;
     }
 
     private void OnMouseEnter()
