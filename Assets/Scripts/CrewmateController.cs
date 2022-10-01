@@ -37,7 +37,6 @@ public class CrewmateController : Phaseable
     // Start is called before the first frame update
     public override void Start() {
         base.Start();
-        Debug.Log("Start");
         _phaseLoop = FindObjectOfType<GamePhaseLoop>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = spriteRenderer.GetComponent<Animator>();
@@ -79,7 +78,6 @@ public class CrewmateController : Phaseable
             }
             if (playerControlled) {
                 _savedInputs [_frame] = _lastInput;
-                //Debug.Log(input);
             } else if (_savedInputs != null) {
                 _lastInput = _savedInputs [_frame];
             } else {
@@ -127,7 +125,7 @@ public class CrewmateController : Phaseable
         }
     }
     private void Interact() {
-        Debug.Log("Character has interacted", this);
+        //Debug.Log("Character has interacted", this);
         GetComponent<InteractorBehaviourScript>().TriggerInteractions();
     }
     private void Move(Vector2 movement) {
@@ -138,7 +136,6 @@ public class CrewmateController : Phaseable
 
     public override void PhaseEvacuate() {
         if (playerControlled) {
-            Debug.Log("Deleting inputs");
             _savedInputs = new ushort[n_frames];
         }
         UpdateSelector();
