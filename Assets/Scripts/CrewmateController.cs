@@ -37,7 +37,7 @@ public class CrewmateController : Phaseable
     public override void Start()
     {
         base.Start();
-        Debug.Log("Start");
+        //Debug.Log("Start");
         _phaseLoop = FindObjectOfType<GamePhaseLoop>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = spriteRenderer.GetComponent<Animator>();
@@ -78,6 +78,7 @@ public class CrewmateController : Phaseable
     public override void Reset()
     {
         _frame = 0;
+        _lastInput = 0;
         rescued = false;
         graphicsObj.SetActive(true);
         gameObject.SetActive(true);
@@ -164,7 +165,7 @@ public class CrewmateController : Phaseable
 
     private void Interact()
     {
-        Debug.Log("Character has interacted", this);
+        //Debug.Log("Character has interacted", this);
         GetComponent<InteractorBehaviourScript>().TriggerInteractions();
     }
 
@@ -179,7 +180,7 @@ public class CrewmateController : Phaseable
     {
         if (playerControlled)
         {
-            Debug.Log("Deleting inputs");
+            //Debug.Log("Deleting inputs");
             _savedInputs = new ushort[n_frames];
         }
 
@@ -225,10 +226,12 @@ public class CrewmateController : Phaseable
 
     public void Rescue()
     {
-        Game.DisplayFloatingText(transform.position, "'I am safe!'", 5);
-        graphicsObj.SetActive(false);
-        rescued = true;
-        Game.CheckWinCondition();
+        if (!rescued) {
+            Game.DisplayFloatingText(transform.position, "'I am safe!'", 5);
+            graphicsObj.SetActive(false);
+            rescued = true;
+            Game.CheckWinCondition();
+        }
 
         // if (Game.currentPhase==GameState.Phase.EvacuationPhase && SelectedForEvac) {
         //     _phaseLoop.NextPhase();
