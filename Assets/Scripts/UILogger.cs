@@ -17,6 +17,7 @@ public class UILogger : MonoBehaviour
     public TextMeshProUGUI text;
     public bool showFPS;
     public bool showLog;
+    public bool separatorBetweenEntries;
 
     void Start()
     {
@@ -89,7 +90,12 @@ public class UILogger : MonoBehaviour
             {
                 if (showLog)
                 {
-                    logText = logText + "\n" + logObject.GetText();
+                    if (separatorBetweenEntries)
+                    {
+                        logText = logText + "\n";
+                    }
+
+                    logText = logText + logObject.GetText();
                     logText = logText.Trim();
                 }
             }
