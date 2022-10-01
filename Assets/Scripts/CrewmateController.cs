@@ -18,6 +18,7 @@ public class CrewmateController : Phaseable {
     // Start is called before the first frame update
     public override void Start() {
         base.Start();
+        Debug.Log("Start");
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _initialPosition = transform.position;
     }
@@ -96,6 +97,7 @@ public class CrewmateController : Phaseable {
     }
     private void Interact() {
         Debug.Log("Character has interacted", this);
+        GetComponent<InteractorBehaviourScript>().TriggerInteractions();
     }
     private void Move(Vector2 movement) {
         //Debug.Log(movement);

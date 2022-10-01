@@ -10,15 +10,16 @@ public class InteractionBehaviourScript : MonoBehaviour
         triggerEvent ??= new UnityEvent();
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         var interactor = col.gameObject.GetComponent<InteractorBehaviourScript>();
+        Debug.Log("Enter", this);
         if(interactor == null) return;
 
         interactor.AddInteraction(this);
     }
     
-    private void OnCollisionExit2D(Collision2D col)
+    private void OnTriggerExit2D(Collider2D col)
     {
         var interactor = col.gameObject.GetComponent<InteractorBehaviourScript>();
         if(interactor == null) return;

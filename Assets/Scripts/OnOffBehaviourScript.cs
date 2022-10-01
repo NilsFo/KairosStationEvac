@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnOffBehaviourScript : MonoBehaviour
+public class OnOffBehaviourScript : Phaseable
 {
     [SerializeField] private GameObject offGameObject;
     [SerializeField] private GameObject onGameObject;
@@ -12,8 +12,9 @@ public class OnOffBehaviourScript : MonoBehaviour
     
     [SerializeField] private bool currentState;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         ResetState();
     }
 
@@ -23,6 +24,15 @@ public class OnOffBehaviourScript : MonoBehaviour
         UpdateState();
     }
 
+    public override void Reset() {
+        // TODO
+    }
+    public override void PhaseEvacuate() {
+        // TODO
+    }
+    public override void PhasePlanning() {
+        // TODO
+    }
     public void ToggleState()
     {
         currentState = !currentState;

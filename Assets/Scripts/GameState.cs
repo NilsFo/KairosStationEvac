@@ -22,12 +22,11 @@ public class GameState : MonoBehaviour
     public UnityEvent onWin;
     public UnityEvent onResetGameplay;
 
-    private List<Phaseable> myObservers;
+    private List<Phaseable> myObservers = new List<Phaseable>();
 
     // Start is called before the first frame update
     void Start()
     {
-        myObservers = new List<Phaseable>();
         if (onPhasePlaying == null) onPhasePlaying = new UnityEvent();
         if (onPhasePlanning == null) onPhasePlanning = new UnityEvent();
         if (onWin == null) onWin = new UnityEvent();
