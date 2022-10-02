@@ -329,6 +329,7 @@ MonoBehaviour:
   speed: 2.5
   startFlipped: 0
   spriteRenderer: {fileID: 149923623}
+  myHitbox: {fileID: 3364912768194578611}
   rescued: 0
   graphicsObj: {fileID: 149923621}
 --- !u!50 &2344044034692930154

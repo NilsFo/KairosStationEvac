@@ -30,6 +30,7 @@ public class CrewmateController : Phaseable
     private static readonly int AnimPanic = Animator.StringToHash("panic");
     private static readonly int AnimPush = Animator.StringToHash("push");
 
+    public CapsuleCollider2D myHitbox;
     private bool alive = true;
     public bool rescued = false;
     public GameObject graphicsObj;
@@ -90,6 +91,7 @@ public class CrewmateController : Phaseable
         graphicsObj.SetActive(true);
         gameObject.SetActive(true);
         transform.position = _initialPosition;
+        myHitbox.enabled = true;
         
         GetComponent<Rigidbody2D>().simulated = true;
 
@@ -265,7 +267,9 @@ public class CrewmateController : Phaseable
             return;
         }
 
-        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'", 5);
+        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'");
+        myHitbox.enabled = false;
+        graphicsObj.SetActive(false);
         //graphicsObj.SetActive(false);
         _animator.SetTrigger(AnimDeath);
         GetComponent<Rigidbody2D>().simulated = false;
