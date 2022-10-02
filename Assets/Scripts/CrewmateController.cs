@@ -23,6 +23,7 @@ public class CrewmateController : Phaseable
     public float speed = 1.5f;
     private bool _inputDown;
     public bool startFlipped;
+    private bool pushingBoxRightNow = false;
 
     private Animator _animator;
     public SpriteRenderer spriteRenderer;
@@ -37,6 +38,11 @@ public class CrewmateController : Phaseable
     public GameObject graphicsObj;
     private static readonly int AnimDoor = Animator.StringToHash("door");
     private static readonly int AnimDeath = Animator.StringToHash("death");
+
+    public float deathShakeMagnitude = 0.15f;
+    public float deathShakeDuration = 0.2f;
+    public float moveBoxShakeMagnitude = 0.05f;
+    public float moveBoxShakeDuration = 0.05f;
 
     public bool SelectedForEvac => Game.selectedCrewmate == this;
     private bool _isMoving = false;
@@ -85,6 +91,11 @@ public class CrewmateController : Phaseable
                 _lastInput = (ushort) (_lastInput | 0b0001_0000);
             }
         }
+
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && pushingBoxRightNow)
+        {
+            Game.ShakeCamera(moveBoxShakeMagnitude, deathShakeDuration);
+        }
     }
 
     public override void Reset()
@@ -103,6 +114,7 @@ public class CrewmateController : Phaseable
         _animator.ResetTrigger(AnimDeath);
         _animator.Play("crewmate_idle");
 
+        pushingBoxRightNow = false;
     }
 
     private void FixedUpdate()
@@ -205,7 +217,9 @@ public class CrewmateController : Phaseable
             _savedInputs = new ushort[n_frames];
             _savedPositions = new Vector2[n_frames];
             _animator.SetBool(AnimPanic, false);
-        } else {
+        }
+        else
+        {
             _animator.SetBool(AnimPanic, true);
         }
 
@@ -284,7 +298,10 @@ public class CrewmateController : Phaseable
             return;
         }
 
-        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'");
+        // CameraShake
+        Game.ShakeCamera(deathShakeMagnitude, deathShakeDuration);
+
+        //Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'");
         myHitbox.enabled = false;
         _animator.SetTrigger(AnimDeath);
         //GetComponent<Rigidbody2D>().simulated = false;
@@ -303,13 +320,20 @@ public class CrewmateController : Phaseable
         UpdateSelector();
     }
 
+    public override void PhaseExplosion()
+    {
+        base.PhaseExplosion();
+        if(alive)
+            Kill();
+    }
+
     private void OnMouseDown()
     {
         print("A crewmate has been clicked.");
         if (Game.currentPhase == GameState.Phase.PlanningPhase)
         {
             Game.selectedCrewmate = this;
-            _phaseLoop.NextPhase();
+            _phaseLoop.SetPhaseEvac();
         }
     }
 
@@ -329,14 +353,18 @@ public class CrewmateController : Phaseable
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         var box = other.collider.GetComponent<BoxEntity>();
-        if (box != null) {
+        if (box != null)
+        {
             _animator.SetBool(AnimPush, true);
+            pushingBoxRightNow = true;
             other.rigidbody.mass -= 3;
         }
 
-        if (other.collider.tag.Equals("Door")) {
+        if (other.collider.tag.Equals("Door"))
+        {
             _animator.SetBool(AnimDoor, true);
         }
     }
@@ -353,15 +381,19 @@ public class CrewmateController : Phaseable
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other) {
+    private void OnCollisionExit2D(Collision2D other)
+    {
         var box = other.collider.GetComponent<BoxEntity>();
-        if (box != null) {
+        if (box != null)
+        {
             _animator.SetBool(AnimPush, false);
+            pushingBoxRightNow = false;
             other.rigidbody.mass += 3;
         }
-        if (other.collider.tag.Equals("Door")) {
+
+        if (other.collider.tag.Equals("Door"))
+        {
             _animator.SetBool(AnimDoor, false);
         }
-        
     }
 }

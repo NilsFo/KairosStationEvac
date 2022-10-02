@@ -8,7 +8,11 @@ public abstract class Phaseable : MonoBehaviour
     public abstract void PhaseEvacuate();
     public abstract void PhasePlanning();
 
-    public void PhaseWin()
+    public virtual void PhaseExplosion()
+    {
+    }
+
+    public virtual void PhaseWin()
     {
     }
 
