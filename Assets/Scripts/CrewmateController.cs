@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CrewmateController : Phaseable
 {
@@ -27,11 +28,13 @@ public class CrewmateController : Phaseable
     private static readonly int AnimLeft = Animator.StringToHash("left");
     private static readonly int AnimRunning = Animator.StringToHash("running");
     private static readonly int AnimPanic = Animator.StringToHash("panic");
+    private static readonly int AnimPush = Animator.StringToHash("push");
 
     public CapsuleCollider2D myHitbox;
     private bool alive = true;
     public bool rescued = false;
     public GameObject graphicsObj;
+    private static readonly int AnimDoor = Animator.StringToHash("door");
 
     public bool SelectedForEvac => Game.selectedCrewmate == this;
 
@@ -298,5 +301,29 @@ public class CrewmateController : Phaseable
         {
             _animator.SetBool(AnimRunning, false);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        var box = other.collider.GetComponent<BoxEntity>();
+        if (box != null) {
+            _animator.SetBool(AnimPush, true);
+            other.rigidbody.mass -= 3;
+        }
+
+        if (other.collider.tag.Equals("Door")) {
+            _animator.SetBool(AnimDoor, true);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        var box = other.collider.GetComponent<BoxEntity>();
+        if (box != null) {
+            _animator.SetBool(AnimPush, false);
+            other.rigidbody.mass += 3;
+        }
+        if (other.collider.tag.Equals("Door")) {
+            _animator.SetBool(AnimDoor, false);
+        }
+        
     }
 }
