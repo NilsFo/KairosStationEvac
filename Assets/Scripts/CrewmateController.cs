@@ -24,8 +24,9 @@ public class CrewmateController : Phaseable
 
     private Animator _animator;
     public SpriteRenderer spriteRenderer;
-    private static readonly int Left = Animator.StringToHash("left");
-    private static readonly int Running = Animator.StringToHash("running");
+    private static readonly int AnimLeft = Animator.StringToHash("left");
+    private static readonly int AnimRunning = Animator.StringToHash("running");
+    private static readonly int AnimPanic = Animator.StringToHash("panic");
 
     private bool alive = true;
     public bool rescued = false;
@@ -184,6 +185,9 @@ public class CrewmateController : Phaseable
         {
             //Debug.Log("Deleting inputs");
             _savedInputs = new ushort[n_frames];
+            _animator.SetBool(AnimPanic, false);
+        } else {
+            _animator.SetBool(AnimPanic, true);
         }
 
         UpdateSelector();
@@ -198,8 +202,9 @@ public class CrewmateController : Phaseable
         UpdateSelector();
 
         // Set visuals
-        _animator.SetBool(Running, false);
-        _animator.SetBool(Left, startFlipped);
+        _animator.SetBool(AnimRunning, false);
+        _animator.SetBool(AnimLeft, startFlipped);
+        _animator.SetBool(AnimPanic, false);
         spriteRenderer.flipX = startFlipped;
     }
 
@@ -281,13 +286,13 @@ public class CrewmateController : Phaseable
     {
         if ((_lastInput & 0b0000_1111) > 0)
         {
-            _animator.SetBool(Running, true);
-            _animator.SetBool(Left, (_lastInput & 0b0000_0100) > 0);
+            _animator.SetBool(AnimRunning, true);
+            _animator.SetBool(AnimLeft, (_lastInput & 0b0000_0100) > 0);
             spriteRenderer.flipX = (_lastInput & 0b0000_0100) > 0;
         }
         else
         {
-            _animator.SetBool(Running, false);
+            _animator.SetBool(AnimRunning, false);
         }
     }
 }
