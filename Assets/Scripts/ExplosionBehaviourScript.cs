@@ -9,16 +9,18 @@ public class ExplosionBehaviourScript : Phaseable
     [SerializeField] private GameObject Indicator;
     [SerializeField] private GameObject Explosion;
     
-    [SerializeField] private float InitIndicatorTime = 1f;
+    [SerializeField] private float InitIndicatorTime = 0f;
     [SerializeField] private float InitExplodeTime = 4f;
-    
+
     [SerializeField] private float localTime = 0f;
     [SerializeField] private bool isOnFire = false;
+    [SerializeField] private bool isLive = false;
     
     private List<CrewmateController> _crewmateControllers = new List<CrewmateController>();
 
     public override void Reset()
     {
+        isLive = true;
         localTime = InitIndicatorTime + InitExplodeTime;
         isOnFire = false;
         Indicator.SetActive(false);
@@ -27,6 +29,7 @@ public class ExplosionBehaviourScript : Phaseable
 
     public override void PhaseEvacuate()
     {
+        isLive = true;
         localTime = InitIndicatorTime + InitExplodeTime;
         isOnFire = false;
         Indicator.SetActive(false);
@@ -35,6 +38,7 @@ public class ExplosionBehaviourScript : Phaseable
 
     public override void PhasePlanning()
     {
+        isLive = false;
         localTime = 0;
         isOnFire = false;
         Indicator.SetActive(false);
@@ -43,6 +47,7 @@ public class ExplosionBehaviourScript : Phaseable
 
     private void Update()
     {
+        if(!isLive) return;
         if (localTime > 0)
         {
             localTime -= Time.deltaTime;
