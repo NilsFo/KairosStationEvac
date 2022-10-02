@@ -34,6 +34,7 @@ public class CrewmateController : Phaseable
     public bool rescued = false;
     public GameObject graphicsObj;
     private static readonly int AnimDoor = Animator.StringToHash("door");
+    private static readonly int AnimDeath = Animator.StringToHash("death");
 
     public bool SelectedForEvac => Game.selectedCrewmate == this;
 
@@ -51,7 +52,7 @@ public class CrewmateController : Phaseable
 
     void Update()
     {
-        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled)
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
@@ -89,11 +90,17 @@ public class CrewmateController : Phaseable
         graphicsObj.SetActive(true);
         gameObject.SetActive(true);
         transform.position = _initialPosition;
+        
+        GetComponent<Rigidbody2D>().simulated = true;
+
+        _animator.ResetTrigger(AnimDeath);
+        _animator.Play("crewmate_idle");
+
     }
 
     private void FixedUpdate()
     {
-        if (Game.currentPhase == GameState.Phase.EvacuationPhase)
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && alive)
         {
             if (_frame >= n_frames)
             {
@@ -259,7 +266,9 @@ public class CrewmateController : Phaseable
         }
 
         Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'", 5);
-        graphicsObj.SetActive(false);
+        //graphicsObj.SetActive(false);
+        _animator.SetTrigger(AnimDeath);
+        GetComponent<Rigidbody2D>().simulated = false;
         alive = false;
     }
 
@@ -308,6 +317,14 @@ public class CrewmateController : Phaseable
 
         if (other.collider.tag.Equals("Door")) {
             _animator.SetBool(AnimDoor, true);
+        }
+    }
+    
+    
+    private void OnCollisionStay2D(Collision2D other) {
+        var box = other.collider.GetComponent<BoxEntity>();
+        if (box != null) {
+            _animator.SetBool(AnimPush, true);
         }
     }
 

@@ -1145,6 +1145,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 795775330}
     m_Modifications:
+    - target: {fileID: 149923623, guid: f334e2608a57ff341be0a190343895ca, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4138483
+      objectReference: {fileID: 0}
+    - target: {fileID: 149923623, guid: f334e2608a57ff341be0a190343895ca, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4138483
+      objectReference: {fileID: 0}
+    - target: {fileID: 149923623, guid: f334e2608a57ff341be0a190343895ca, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9433962
+      objectReference: {fileID: 0}
     - target: {fileID: 2344044034692930154, guid: f334e2608a57ff341be0a190343895ca, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -1628,10 +1640,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 168945772979542318, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 209638553193903711, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
       propertyPath: m_Name
       value: IngameLaserEmitter
@@ -4620,23 +4628,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: orthographic size
-      value: 4.5
+      value: 5.625
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.0013850415
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.0012315271
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.9972299
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.99753696
       objectReference: {fileID: 0}
     - target: {fileID: 519420032, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_LocalPosition.x
