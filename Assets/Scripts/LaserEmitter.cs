@@ -20,7 +20,6 @@ public class LaserEmitter : Phaseable
     {
         laserSegment.SetActive(false);
         base.Start();
-        Reset();
     }
 
     // Start is called before the first frame update
@@ -117,7 +116,7 @@ public class LaserEmitter : Phaseable
             //Debug.Log("hit", hit.transform.gameObject);
             //Debug.Log("Distance: "+distance);
 
-            Vector3 laserPos = new Vector3();
+            Vector3 laserPos = laserStartPoint.transform.localPosition;
             laserPos.y = laserPos.y + distance / 2;
             laserPos.z = 0.1337f;
             laserSegment.transform.localPosition = laserPos;
@@ -136,7 +135,13 @@ public class LaserEmitter : Phaseable
                     LaserTargetable lt = newHit.GetComponent<LaserTargetable>();
                     if (lt != null)
                     {
-                        lt.ResetTimer();
+                        if (targetedReciever != null && targetedReciever.gameObject != lt.gameObject)
+                        {
+                            if (targetedReciever != null)
+                            {
+                                lt.ResetTimer();
+                            }
+                        }
                     }
 
                     LaserReciever lr = newHit.GetComponent<LaserReciever>();

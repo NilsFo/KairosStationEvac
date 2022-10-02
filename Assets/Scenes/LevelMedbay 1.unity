@@ -1749,6 +1749,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 8627919833041081650, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
+      propertyPath: InitActivationState
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
 --- !u!114 &617367999 stripped
@@ -2170,6 +2174,10 @@ PrefabInstance:
       propertyPath: InitState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4220565509041746902, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
+      propertyPath: InitActivationState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5724201962064901634, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
       propertyPath: m_Name
       value: IngameDoor (2)
@@ -2471,6 +2479,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4220565509041746902, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
       propertyPath: InitState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220565509041746902, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
+      propertyPath: InitActivationState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5724201962064901634, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
@@ -5864,11 +5876,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6523130418108955858, guid: e32faf0df3b11a34b8c2fc5d9ec3724b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6523130418108955858, guid: e32faf0df3b11a34b8c2fc5d9ec3724b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.75
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6523130418108955858, guid: e32faf0df3b11a34b8c2fc5d9ec3724b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6041,6 +6053,10 @@ PrefabInstance:
       propertyPath: InitState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4220565509041746902, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
+      propertyPath: InitActivationState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5724201962064901634, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
       propertyPath: m_Name
       value: IngameDoor (1)
@@ -6161,19 +6177,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.36218837
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.112068966
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.33240998
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.33251232
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 519420032, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_LocalPosition.x

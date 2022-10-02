@@ -96,11 +96,14 @@ MonoBehaviour:
   offGameObject: {fileID: 460805656748108802}
   onGameObject: {fileID: 5682385932025123212}
   disableGameObject: {fileID: 6631935227093655761}
-  IsToggleable: 1
+  altOnGameObject: []
+  ButtonType: 1
   InitActivationState: 0
   InitPowerState: 1
+  InitTimer: 4
   currentActivationState: 0
   currentPowerState: 0
+  currentTimer: 0
   OmEnableEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -173,6 +176,7 @@ MonoBehaviour:
   laserSprite: {fileID: 7810178998244667953}
   laserCollider: {fileID: 168945772979542318}
   laserRayTarget: {fileID: 0}
+  targetedReciever: {fileID: 0}
 --- !u!1 &460805656748108802
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,12 +67,6 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!firstCleanDone)
-        {
-            firstCleanDone = true;
-            ResetAndCleanUp();
-        }
-
         if (_lastKnownPhase != currentPhase)
         {
             OnStateChanged();
