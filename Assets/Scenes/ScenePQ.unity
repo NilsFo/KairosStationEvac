@@ -992,7 +992,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 263375507592461851, guid: 5247941a0f06dc44d9bbd2b58ee7ae53, type: 3}
       propertyPath: m_Name
-      value: ExplosionMaster
+      value: Explosion
       objectReference: {fileID: 0}
     - target: {fileID: 3986808447254697000, guid: 5247941a0f06dc44d9bbd2b58ee7ae53, type: 3}
       propertyPath: m_RootOrder
@@ -1231,7 +1231,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: orthographic size
-      value: 4.821429
+      value: 5.625
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x

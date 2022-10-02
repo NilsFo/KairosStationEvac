@@ -73,38 +73,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209638553193903711}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44898d019779e484ba020ab2c442246b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8627919833041081650}
-        m_TargetAssemblyTypeName: OnOffBehaviourScript, Assembly-CSharp
-        m_MethodName: ToggleState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OnOffBehaviourScript, Assembly-CSharp
-        m_MethodName: SetStateOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8627919833041081650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,22 +97,64 @@ MonoBehaviour:
   onGameObject: {fileID: 5682385932025123212}
   disableGameObject: {fileID: 6631935227093655761}
   IsToggleable: 1
-  InitState: 0
-  InitActiveEnable: 1
-  currentState: 0
-  currentActiveEnable: 0
+  InitActivationState: 0
+  InitPowerState: 1
+  currentActivationState: 0
+  currentPowerState: 0
   OmEnableEvent:
     m_PersistentCalls:
       m_Calls: []
   OmDisableEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5210922161351815679}
+        m_TargetAssemblyTypeName: LaserEmitter, Assembly-CSharp
+        m_MethodName: TurnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OmActivateEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5210922161351815679}
+        m_TargetAssemblyTypeName: LaserEmitter, Assembly-CSharp
+        m_MethodName: TurnOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OmDeactivateEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5210922161351815679}
+        m_TargetAssemblyTypeName: LaserEmitter, Assembly-CSharp
+        m_MethodName: TurnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnActivationText: 
+  OnDeactivationText: 
+  OnEnablePowerText: 
+  OnDisablePowerText: 
+  OnNoPower: 
+  OnAlreadyUsed: 
 --- !u!114 &5210922161351815679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +168,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserStartPoint: {fileID: 5362227327155675250}
-  initiallyOn: 1
+  initiallyOn: 0
   laserSegment: {fileID: 445205950728737041}
   laserSprite: {fileID: 7810178998244667953}
   laserCollider: {fileID: 168945772979542318}
+  laserRayTarget: {fileID: 0}
 --- !u!1 &460805656748108802
 GameObject:
   m_ObjectHideFlags: 0
