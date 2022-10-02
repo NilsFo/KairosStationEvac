@@ -28,6 +28,7 @@ public class CrewmateController : Phaseable
     private static readonly int AnimRunning = Animator.StringToHash("running");
     private static readonly int AnimPanic = Animator.StringToHash("panic");
 
+    public CapsuleCollider2D myHitbox;
     private bool alive = true;
     public bool rescued = false;
     public GameObject graphicsObj;
@@ -86,6 +87,7 @@ public class CrewmateController : Phaseable
         graphicsObj.SetActive(true);
         gameObject.SetActive(true);
         transform.position = _initialPosition;
+        myHitbox.enabled = true;
     }
 
     private void FixedUpdate()
@@ -251,11 +253,13 @@ public class CrewmateController : Phaseable
         if (!alive)
         {
             Debug.LogError("Do you want to kill something that is already dead?????");
+            // TODO disable hitbox on death!
             Game.currentPhase = GameState.Phase.Unknown;
             return;
         }
 
-        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'", 5);
+        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'");
+        myHitbox.enabled = true;
         graphicsObj.SetActive(false);
         alive = false;
     }

@@ -13,34 +13,54 @@ public class LaserEmitter : Phaseable
     public SpriteRenderer laserSprite;
     public BoxCollider2D laserCollider;
 
-    public GameObject laserRayTarget;
-    public LaserReciever targetedReciever;
+    public GameObject laserRayTarget = null;
+    public LaserReciever targetedReciever = null;
+
+    public bool deadly = false;
 
     public override void Start()
     {
-        laserSegment.SetActive(false);
         base.Start();
+        laserSegment.SetActive(false);
     }
 
     // Start is called before the first frame update
     public override void Reset()
     {
-        if (initiallyOn)
+        deadly = false;
+
+        if (laserRayTarget != null)
         {
-            TurnOn();
+            LaserTargetable lt = laserRayTarget.GetComponent<LaserTargetable>();
+            LaserReciever lr = laserRayTarget.GetComponent<LaserReciever>();
+            if (lt != null)
+            {
+                lt.ResetTimer();
+            }
+
+            if (lr != null)
+            {
+                lr.LooseLaser();
+            }
         }
-        else
+
+        if (targetedReciever != null)
         {
-            TurnOff();
+            targetedReciever.LooseLaser();
         }
+
+        laserRayTarget = null;
+        targetedReciever = null;
     }
 
     public override void PhaseEvacuate()
     {
+        deadly = true;
     }
 
     public override void PhasePlanning()
     {
+        deadly = false;
     }
 
     public void TurnOn()
@@ -49,6 +69,8 @@ public class LaserEmitter : Phaseable
         {
             return;
         }
+
+        Game.DisplayFloatingText(transform.position, "On!");
 
         currentlyOn = true;
         laserRayTarget = null;
@@ -62,6 +84,8 @@ public class LaserEmitter : Phaseable
             return;
         }
 
+        Game.DisplayFloatingText(transform.position, "Offff!");
+
         currentlyOn = false;
         laserRayTarget = null;
         laserSegment.SetActive(false);
@@ -69,14 +93,12 @@ public class LaserEmitter : Phaseable
 
     private void FixedUpdate()
     {
-        if (currentlyOn && Game.currentPhase == GameState.Phase.EvacuationPhase)
+        if (currentlyOn)
             UpdateLaserSegments();
     }
 
     public void UpdateLaserSegments()
     {
-        if (Game.currentPhase != GameState.Phase.EvacuationPhase)
-            return;
         laserRayTarget = null;
 
         int layerDefault = LayerMask.GetMask("Default");
@@ -177,7 +199,7 @@ public class LaserEmitter : Phaseable
         if (laserRayTarget != null)
         {
             LaserTargetable lt = laserRayTarget.GetComponent<LaserTargetable>();
-            if (lt != null)
+            if (lt != null && deadly)
             {
                 lt.Frizzle(Time.deltaTime);
                 if (lt.Broken)
