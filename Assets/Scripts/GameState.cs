@@ -190,7 +190,7 @@ public class GameState : MonoBehaviour
         // TODO implement
     }
 
-    public void DisplayFloatingText(Vector3 position, string text, int duration, float fontSize = 0.69f,
+    public void DisplayFloatingText(Vector3 position, string text, float duration=3f, float fontSize = 0.69f,
         float velocity_Y = 0.15f, float velocity_Z = 0f, float velocity_X = 0f)
     {
         var newObj = Instantiate(floatingTextPrefab, position, Quaternion.identity);
