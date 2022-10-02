@@ -36,6 +36,7 @@ public class ExplosionBehaviourScript : Phaseable
         isOnFire = false;
         Indicator.SetActive(false);
         Explosion.SetActive(false);
+        GetComponent<Collider2D>().enabled = true;
     }
 
     public override void PhasePlanning()
@@ -45,6 +46,7 @@ public class ExplosionBehaviourScript : Phaseable
         isOnFire = false;
         Indicator.SetActive(false);
         Explosion.SetActive(false);
+        GetComponent<Collider2D>().enabled = false;
     }
 
     private void Update()

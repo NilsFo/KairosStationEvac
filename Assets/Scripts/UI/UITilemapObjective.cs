@@ -60,7 +60,6 @@ public class UITilemapObjective : Phaseable
 
         if (Game.currentPhase == GameState.Phase.EvacuationPhase)
         {
-            print("Updating");
             tilemapEvac.SetActive(true);
             Vector3Int f = new Vector3Int(firstDigit.x, firstDigit.y, 0);
             Vector3Int s = new Vector3Int(secondDigit.x, secondDigit.y, 0);
