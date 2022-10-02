@@ -24,7 +24,7 @@ public class GameState : MonoBehaviour
     public Phase currentPhase = Phase.Unknown;
     private Phase _lastKnownPhase;
     public bool levelWon = false;
-    public UnityEvent onPhasePlaying;
+    public UnityEvent onPhaseEvacuate;
     public UnityEvent onPhasePlanning;
     public UnityEvent onWin;
     public UnityEvent onWinOnce;
@@ -37,6 +37,8 @@ public class GameState : MonoBehaviour
     public int CrewmateCount => allCrewmates.Count;
 
     public GameObject floatingTextPrefab;
+    private UITilemapSaved _tilemapSaved;
+    private UITilemapObjective tilemapObjective;
 
     // Camera Shake
     public GameObject CMCameraFocus;
@@ -56,7 +58,7 @@ public class GameState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (onPhasePlaying == null) onPhasePlaying = new UnityEvent();
+        if (onPhaseEvacuate == null) onPhaseEvacuate = new UnityEvent();
         if (onPhasePlanning == null) onPhasePlanning = new UnityEvent();
         if (onWin == null) onWin = new UnityEvent();
         if (onWinOnce == null) onWinOnce = new UnityEvent();
@@ -65,6 +67,8 @@ public class GameState : MonoBehaviour
 
         levelWon = false;
         CMCameraFocus = GameObject.FindGameObjectWithTag("CameraFocus");
+        _tilemapSaved = FindObjectOfType<UITilemapSaved>();
+        CheckWinCondition();
         ResetCameraShake();
     }
 
@@ -143,6 +147,13 @@ public class GameState : MonoBehaviour
     public void CheckWinCondition()
     {
         int rescueCount = GetRescuedCrewmateCount();
+        
+        if (_tilemapSaved != null)
+        {
+            _tilemapSaved.savedCurrent = rescueCount;
+            _tilemapSaved.savedTarget = CrewmateCount;
+        }
+        
         if (rescueCount == CrewmateCount)
         {
             WinGame();
@@ -187,7 +198,8 @@ public class GameState : MonoBehaviour
 
     private void OnPhaseEvacuate()
     {
-        onPhasePlaying.Invoke();
+        onPhaseEvacuate.Invoke();
+        CheckWinCondition();
 
         // Setting player control
         foreach (CrewmateController c in allCrewmates)
@@ -209,6 +221,7 @@ public class GameState : MonoBehaviour
     private void OnPhasePlanning()
     {
         ResetAndCleanUp();
+        CheckWinCondition();
         onPhasePlanning.Invoke();
         foreach (var p in myObservers)
         {
