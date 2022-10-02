@@ -26,7 +26,7 @@ public class GamePhaseLoop : MonoBehaviour
         }
 
         //Checking for inputs
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Q))
         {
             switch (_currentPhase)
             {

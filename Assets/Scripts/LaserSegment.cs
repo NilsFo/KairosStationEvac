@@ -38,13 +38,11 @@ public class LaserSegment : Phaseable
     void Update()
     {
         List<LaserTargetable> killedList = new List<LaserTargetable>();
-        foreach (LaserTargetable t in myTargets)
-        {
-            if (!t.gameObject != myParentEmitter.gameObject)
-            {
+        for (var index = myTargets.Count - 1; index >= 0; index--) {
+            LaserTargetable t = myTargets [index];
+            if (!t.gameObject != myParentEmitter.gameObject) {
                 t.Frizzle(Time.deltaTime);
-                if (t.Broken)
-                {
+                if (t.Broken) {
                     killedList.Add(t);
                 }
             }

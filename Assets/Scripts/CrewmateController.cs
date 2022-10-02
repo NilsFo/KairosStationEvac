@@ -30,12 +30,15 @@ public class CrewmateController : Phaseable
     private static readonly int AnimPanic = Animator.StringToHash("panic");
     private static readonly int AnimPush = Animator.StringToHash("push");
 
+    public CapsuleCollider2D myHitbox;
     private bool alive = true;
     public bool rescued = false;
     public GameObject graphicsObj;
     private static readonly int AnimDoor = Animator.StringToHash("door");
+    private static readonly int AnimDeath = Animator.StringToHash("death");
 
     public bool SelectedForEvac => Game.selectedCrewmate == this;
+    private bool _isMoving = false;
 
     // Start is called before the first frame update
     public override void Start()
@@ -51,7 +54,7 @@ public class CrewmateController : Phaseable
 
     void Update()
     {
-        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled)
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
@@ -89,11 +92,18 @@ public class CrewmateController : Phaseable
         graphicsObj.SetActive(true);
         gameObject.SetActive(true);
         transform.position = _initialPosition;
+        myHitbox.enabled = true;
+        
+        //GetComponent<Rigidbody2D>().simulated = true;
+
+        _animator.ResetTrigger(AnimDeath);
+        _animator.Play("crewmate_idle");
+
     }
 
     private void FixedUpdate()
     {
-        if (Game.currentPhase == GameState.Phase.EvacuationPhase)
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && alive)
         {
             if (_frame >= n_frames)
             {
@@ -117,7 +127,7 @@ public class CrewmateController : Phaseable
             ExecuteInput(_lastInput);
 
             Animate();
-
+            
             _lastInput = 0;
             _frame++;
         }
@@ -258,8 +268,10 @@ public class CrewmateController : Phaseable
             return;
         }
 
-        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'", 5);
-        graphicsObj.SetActive(false);
+        Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'");
+        myHitbox.enabled = false;
+        _animator.SetTrigger(AnimDeath);
+        //GetComponent<Rigidbody2D>().simulated = false;
         alive = false;
     }
 
@@ -292,10 +304,12 @@ public class CrewmateController : Phaseable
             _animator.SetBool(AnimRunning, true);
             _animator.SetBool(AnimLeft, (_lastInput & 0b0000_0100) > 0);
             spriteRenderer.flipX = (_lastInput & 0b0000_0100) > 0;
+            _isMoving = true;
         }
         else
         {
             _animator.SetBool(AnimRunning, false);
+            _isMoving = false;
         }
     }
 
@@ -308,6 +322,18 @@ public class CrewmateController : Phaseable
 
         if (other.collider.tag.Equals("Door")) {
             _animator.SetBool(AnimDoor, true);
+        }
+    }
+    
+    
+    private void OnCollisionStay2D(Collision2D other) {
+        var box = other.collider.GetComponent<BoxEntity>();
+        if (box != null) {
+            if(_isMoving)
+                _animator.SetBool(AnimPush, true);
+            else {
+                _animator.SetBool(AnimPush, false);
+            }
         }
     }
 
