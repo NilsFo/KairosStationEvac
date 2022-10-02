@@ -5,9 +5,13 @@ using UnityEngine;
 public class GamePhaseLoop : MonoBehaviour
 {
     public GameState myGameState;
-    public int phaseLength = 10;
+    public int phaseLengthEvac = 10;
+    public int phaseLengthExplosion = 3;
     private float timer;
     private GameState.Phase _currentPhase = GameState.Phase.Unknown;
+
+    public float explosionPhasePhaseShakeMagnitude = 2f;
+    public float explosionPhaseShakeDuration = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +32,9 @@ public class GamePhaseLoop : MonoBehaviour
         //////////////////////////////////////
         //Checking for inputs
         //////////////////////////////////////
-        
-        
+
         /// Back to menu / cancel
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             switch (_currentPhase)
             {
@@ -39,7 +42,8 @@ public class GamePhaseLoop : MonoBehaviour
                     myGameState.BackToMainMenu();
                     return;
                 case GameState.Phase.EvacuationPhase:
-                    NextPhase();
+                case GameState.Phase.ExplosionPhase:
+                    SetPhasePlanning();
                     return;
                 case GameState.Phase.WinState:
                     myGameState.BackToMainMenu();
@@ -49,18 +53,21 @@ public class GamePhaseLoop : MonoBehaviour
                     return;
             }
         }
-        
+
         // Changing phase by pressing space or Q
-        if (Input.GetKey(KeyCode.Q) ||Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.Space))
         {
             switch (_currentPhase)
             {
                 case GameState.Phase.EvacuationPhase:
-                    NextPhase();
+                    SetPhasePlanning();
+                    return;
+                case GameState.Phase.ExplosionPhase:
+                    SetPhasePlanning();
                     return;
                 case GameState.Phase.PlanningPhase:
                     myGameState.selectedCrewmate = null;
-                    NextPhase();
+                    SetPhaseEvac();
                     return;
             }
         }
@@ -73,25 +80,41 @@ public class GamePhaseLoop : MonoBehaviour
         if (_currentPhase == GameState.Phase.EvacuationPhase)
         {
             timer += Time.deltaTime;
-            if (timer >= phaseLength)
+            if (timer >= phaseLengthEvac)
             {
                 timer = 0;
-                NextPhase();
+                SetPhaseExplosion();
+            }
+        }
+
+        if (_currentPhase == GameState.Phase.ExplosionPhase)
+        {
+            timer += Time.deltaTime;
+            if (timer >= phaseLengthExplosion)
+            {
+                timer = 0;
+                SetPhasePlanning();
             }
         }
     }
 
-    public void NextPhase()
+    public void SetPhasePlanning()
     {
         timer = 0;
-        if (_currentPhase == GameState.Phase.PlanningPhase)
-        {
-            myGameState.currentPhase = GameState.Phase.EvacuationPhase;
-        }
-        else
-        {
-            myGameState.currentPhase = GameState.Phase.PlanningPhase;
-        }
+        myGameState.currentPhase = GameState.Phase.PlanningPhase;
+    }
+
+    public void SetPhaseEvac()
+    {
+        timer = 0;
+        myGameState.currentPhase = GameState.Phase.EvacuationPhase;
+    }
+
+    public void SetPhaseExplosion()
+    {
+        timer = 0;
+        myGameState.currentPhase = GameState.Phase.ExplosionPhase;
+        myGameState.ShakeCamera(explosionPhasePhaseShakeMagnitude, explosionPhaseShakeDuration);
     }
 
     public string GetTimerFormatted()
@@ -99,7 +122,7 @@ public class GamePhaseLoop : MonoBehaviour
         if (_currentPhase == GameState.Phase.EvacuationPhase)
         {
             int i = (int) timer;
-            return (phaseLength - i).ToString();
+            return (phaseLengthEvac - i).ToString();
         }
 
         return "N/A";

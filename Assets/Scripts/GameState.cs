@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class GameState : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class GameState : MonoBehaviour
         Unknown,
         EvacuationPhase,
         PlanningPhase,
+        ExplosionPhase,
         WinState
     }
 
@@ -21,6 +24,7 @@ public class GameState : MonoBehaviour
     public UnityEvent onPhasePlaying;
     public UnityEvent onPhasePlanning;
     public UnityEvent onWin;
+    public UnityEvent onExplosion;
     public UnityEvent onResetGameplay;
 
     private List<Phaseable> myObservers = new List<Phaseable>();
@@ -29,6 +33,12 @@ public class GameState : MonoBehaviour
     public int CrewmateCount => allCrewmates.Count;
 
     public GameObject floatingTextPrefab;
+
+    // Camera Shake
+    public GameObject CMCameraFocus;
+    public float cameraShakeMagnitude = 0f;
+    public float cameraShakeDuration = 0f;
+    private float _cameraShakeDurationTimer = 0f;
 
     private void OnEnable()
     {
@@ -46,6 +56,10 @@ public class GameState : MonoBehaviour
         if (onPhasePlanning == null) onPhasePlanning = new UnityEvent();
         if (onWin == null) onWin = new UnityEvent();
         if (onResetGameplay == null) onResetGameplay = new UnityEvent();
+        if (onExplosion == null) onExplosion = new UnityEvent();
+
+        CMCameraFocus = GameObject.FindGameObjectWithTag("CameraFocus");
+        ResetCameraShake();
     }
 
     public void SubscribeToPhases(Phaseable p)
@@ -72,6 +86,38 @@ public class GameState : MonoBehaviour
             OnStateChanged();
             _lastKnownPhase = currentPhase;
         }
+
+        if (cameraShakeMagnitude <= 0 || _cameraShakeDurationTimer >= cameraShakeDuration)
+        {
+            ResetCameraShake();
+        }
+
+        if (cameraShakeDuration > 0)
+        {
+            _cameraShakeDurationTimer += Time.deltaTime;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        Vector3 pos = CMCameraFocus.transform.position;
+        pos.x = 0;
+        pos.y = 0;
+
+        if (currentPhase == Phase.ExplosionPhase)
+        {
+            // print("EXPL!");
+        }
+
+        if (cameraShakeDuration > 0 && _cameraShakeDurationTimer < cameraShakeDuration)
+        {
+            // Shaking it!
+            pos.x = Random.Range(cameraShakeMagnitude * -1, cameraShakeMagnitude);
+            pos.y = Random.Range(cameraShakeMagnitude * -1, cameraShakeMagnitude);
+            // Debug.Log("Camera shake!", CMCameraFocus);
+        }
+
+        CMCameraFocus.transform.localPosition = pos;
     }
 
     public int GetRescuedCrewmateCount()
@@ -107,8 +153,6 @@ public class GameState : MonoBehaviour
     private void OnStateChanged()
     {
         print("The state has changed. From: '" + _lastKnownPhase + "' to '" + currentPhase);
-        //TODO callback to other elements??
-
         switch (currentPhase)
         {
             case Phase.PlanningPhase:
@@ -119,6 +163,9 @@ public class GameState : MonoBehaviour
                 break;
             case Phase.WinState:
                 OnPhaseWin();
+                break;
+            case Phase.ExplosionPhase:
+                OnPhaseExplosion();
                 break;
         }
     }
@@ -163,10 +210,20 @@ public class GameState : MonoBehaviour
         }
     }
 
+    private void OnPhaseExplosion()
+    {
+        onExplosion.Invoke();
+        foreach (var p in myObservers)
+        {
+            p.PhaseExplosion();
+        }
+    }
+
     private void ResetAndCleanUp()
     {
         onResetGameplay.Invoke();
         selectedCrewmate = null;
+        ResetCameraShake();
 
         foreach (var p in myObservers)
         {
@@ -191,5 +248,27 @@ public class GameState : MonoBehaviour
         flt.velocity.x = velocity_X;
         flt.velocity.z = velocity_Z;
         flt.fontSize = fontSize;
+    }
+
+    public void ShakeCamera(float magnitude, float duration)
+    {
+        print("Request to shake the camera by " + magnitude + " for " + duration);
+        if (magnitude >= cameraShakeMagnitude)
+        {
+            print("Request accepted.");
+            cameraShakeMagnitude = magnitude;
+            cameraShakeDuration = duration;
+        }
+        else
+        {
+            print("Magnitude too low. Denied.");
+        }
+    }
+
+    public void ResetCameraShake()
+    {
+        cameraShakeMagnitude = 0;
+        cameraShakeDuration = 0;
+        _cameraShakeDurationTimer = 0;
     }
 }

@@ -4607,6 +4607,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1615903881619327072, guid: 596de35062047154788072a7e22bbdac, type: 3}
+      propertyPath: phaseLengthEvac
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 596de35062047154788072a7e22bbdac, type: 3}
 --- !u!1001 &5971309649411997666
@@ -4616,17 +4620,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 396202221, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
-      propertyPath: orthographic size
-      value: 5.625
-      objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.026493799
+      value: 0.0625
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -4634,7 +4630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.94701236
+      value: 0.87500006
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
