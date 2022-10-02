@@ -38,6 +38,7 @@ public class CrewmateController : Phaseable
     private static readonly int AnimDeath = Animator.StringToHash("death");
 
     public bool SelectedForEvac => Game.selectedCrewmate == this;
+    private bool _isMoving = false;
 
     // Start is called before the first frame update
     public override void Start()
@@ -93,7 +94,7 @@ public class CrewmateController : Phaseable
         transform.position = _initialPosition;
         myHitbox.enabled = true;
         
-        GetComponent<Rigidbody2D>().simulated = true;
+        //GetComponent<Rigidbody2D>().simulated = true;
 
         _animator.ResetTrigger(AnimDeath);
         _animator.Play("crewmate_idle");
@@ -126,7 +127,7 @@ public class CrewmateController : Phaseable
             ExecuteInput(_lastInput);
 
             Animate();
-
+            
             _lastInput = 0;
             _frame++;
         }
@@ -269,10 +270,8 @@ public class CrewmateController : Phaseable
 
         Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'");
         myHitbox.enabled = false;
-        graphicsObj.SetActive(false);
-        //graphicsObj.SetActive(false);
         _animator.SetTrigger(AnimDeath);
-        GetComponent<Rigidbody2D>().simulated = false;
+        //GetComponent<Rigidbody2D>().simulated = false;
         alive = false;
     }
 
@@ -305,10 +304,12 @@ public class CrewmateController : Phaseable
             _animator.SetBool(AnimRunning, true);
             _animator.SetBool(AnimLeft, (_lastInput & 0b0000_0100) > 0);
             spriteRenderer.flipX = (_lastInput & 0b0000_0100) > 0;
+            _isMoving = true;
         }
         else
         {
             _animator.SetBool(AnimRunning, false);
+            _isMoving = false;
         }
     }
 
@@ -328,7 +329,11 @@ public class CrewmateController : Phaseable
     private void OnCollisionStay2D(Collision2D other) {
         var box = other.collider.GetComponent<BoxEntity>();
         if (box != null) {
-            _animator.SetBool(AnimPush, true);
+            if(_isMoving)
+                _animator.SetBool(AnimPush, true);
+            else {
+                _animator.SetBool(AnimPush, false);
+            }
         }
     }
 

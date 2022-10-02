@@ -140,7 +140,7 @@ public class LaserEmitter : Phaseable
 
             Vector3 laserPos = laserStartPoint.transform.localPosition;
             laserPos.y = laserPos.y + distance / 2;
-            laserPos.z = 0.1337f;
+            laserPos.z = -5;
             laserSegment.transform.localPosition = laserPos;
 
             laserSprite.size = new Vector2(1, distance);
