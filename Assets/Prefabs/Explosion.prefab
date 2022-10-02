@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3986808447254697000}
   - component: {fileID: 461248607417881634}
   - component: {fileID: 6596662637651267845}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Indicator: {fileID: 7523746454678063901}
   Explosion: {fileID: 7772902802351793265}
-  InitIndicatorTime: 1
+  InitIndicatorTime: 0
   InitExplodeTime: 4
   localTime: 0
   isOnFire: 0
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4340838677777419529}
   - component: {fileID: 9062135774485833983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7283473074954687293}
   - component: {fileID: 1127752702069758514}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
