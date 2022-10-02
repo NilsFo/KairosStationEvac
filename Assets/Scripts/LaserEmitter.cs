@@ -70,7 +70,7 @@ public class LaserEmitter : Phaseable
             return;
         }
 
-        Game.DisplayFloatingText(transform.position, "On!");
+        //Game.DisplayFloatingText(transform.position, "On!");
 
         currentlyOn = true;
         laserRayTarget = null;

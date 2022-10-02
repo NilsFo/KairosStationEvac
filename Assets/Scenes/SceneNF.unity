@@ -194,22 +194,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8627919833041081650, guid: 982c9613d0ef3b84a9f0ce7100b0bac5, type: 3}
-      propertyPath: OmActivateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 30125780}
-    - target: {fileID: 8627919833041081650, guid: 982c9613d0ef3b84a9f0ce7100b0bac5, type: 3}
-      propertyPath: OmDeactivateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 30125780}
-    - target: {fileID: 8627919833041081650, guid: 982c9613d0ef3b84a9f0ce7100b0bac5, type: 3}
-      propertyPath: OmActivateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 30125779}
-    - target: {fileID: 8627919833041081650, guid: 982c9613d0ef3b84a9f0ce7100b0bac5, type: 3}
-      propertyPath: OmDeactivateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 30125779}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 982c9613d0ef3b84a9f0ce7100b0bac5, type: 3}
 --- !u!1 &238780415
@@ -4623,6 +4607,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1615903881619327072, guid: 596de35062047154788072a7e22bbdac, type: 3}
+      propertyPath: phaseLengthEvac
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 596de35062047154788072a7e22bbdac, type: 3}
 --- !u!1001 &5971309649411997666
@@ -4632,29 +4620,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 396202221, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
-      propertyPath: orthographic size
-      value: 4.5
-      objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.5084746
+      value: 0.0625
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.07118255
+      value: 0.026052104
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.31290743
+      value: 0.87500006
       objectReference: {fileID: 0}
     - target: {fileID: 519420031, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.3099885
+      value: 0.9468938
       objectReference: {fileID: 0}
     - target: {fileID: 2998507215939991226, guid: 586d48f1a6293a74bb66adb5d2ce16d4, type: 3}
       propertyPath: m_Name

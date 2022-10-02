@@ -55,11 +55,17 @@ MonoBehaviour:
   onWin:
     m_PersistentCalls:
       m_Calls: []
+  onExplosion:
+    m_PersistentCalls:
+      m_Calls: []
   onResetGameplay:
     m_PersistentCalls:
       m_Calls: []
   selectedCrewmate: {fileID: 0}
   floatingTextPrefab: {fileID: 6658745519226898469, guid: cceb498c7f8f7eb4eb839a2ef4ddd5f5, type: 3}
+  CMCameraFocus: {fileID: 0}
+  cameraShakeMagnitude: 0
+  cameraShakeDuration: 0
 --- !u!114 &1615903881619327072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,4 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myGameState: {fileID: 2334163597147842441}
-  phaseLength: 10
+  phaseLengthEvac: 10
+  phaseLengthExplosion: 3
+  explosionPhasePhaseShakeMagnitude: 0.25
+  explosionPhaseShakeDuration: 5

@@ -17,6 +17,8 @@ public class ExplosionBehaviourScript : Phaseable
     [SerializeField] private bool isLive = false;
     
     private List<CrewmateController> _crewmateControllers = new List<CrewmateController>();
+    public float explosionMagnitude = 0.05f;
+    public float explosionDuration = 0.3f;
 
     public override void Reset()
     {
@@ -70,9 +72,13 @@ public class ExplosionBehaviourScript : Phaseable
             crew.Kill();
             _crewmateControllers.RemoveAt(i);
         }
+        if(!isOnFire) {
+            Game.ShakeCamera(explosionMagnitude, explosionDuration);
+        }
         isOnFire = true;
         Indicator.SetActive(false);
         Explosion.SetActive(true);
+        
     }
 
     public void DisplayIndicator()
