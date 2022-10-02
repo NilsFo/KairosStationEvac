@@ -708,7 +708,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 1
+      m_AllTileFlags: 1073741825
   - first: {x: 6, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -1685,11 +1685,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4545693
+      value: -4.95457
       objectReference: {fileID: 0}
     - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9669063
+      value: -1.7169063
       objectReference: {fileID: 0}
     - target: {fileID: 2412131345713479829, guid: 793605ceca8ea5a4bbcb0184b2aa23d1, type: 3}
       propertyPath: m_LocalPosition.z

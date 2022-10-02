@@ -29,6 +29,9 @@ public abstract class Phaseable : MonoBehaviour
 
     public virtual void OnDisable()
     {
-        Game.UnsubscribeFromPhases(this);
+        if (Game != null)
+        {
+            Game.UnsubscribeFromPhases(this);
+        }
     }
 }

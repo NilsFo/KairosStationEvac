@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class LaserEmitter : Phaseable
 {
-    
+    public Transform laserStartPoint;
+
     public bool initiallyOn = true;
     private bool currentlyOn = false;
     public GameObject laserSegment;
     public SpriteRenderer laserSprite;
     public BoxCollider2D laserCollider;
 
-    private GameObject laserRayTarget;
+    public GameObject laserRayTarget;
     private GameObject _lastKnownRayTarget;
 
     public override void Start()
@@ -69,24 +70,52 @@ public class LaserEmitter : Phaseable
         laserSegment.SetActive(false);
     }
 
-    private void FixedUpdate() {
-        if(currentlyOn && Game.currentPhase == GameState.Phase.EvacuationPhase)
+    private void FixedUpdate()
+    {
+        if (currentlyOn && Game.currentPhase == GameState.Phase.EvacuationPhase)
             UpdateLaserSegments();
     }
 
-    public void UpdateLaserSegments() {
+    public void UpdateLaserSegments()
+    {
         if (Game.currentPhase != GameState.Phase.EvacuationPhase)
             return;
         laserRayTarget = null;
-        
-        int layer = LayerMask.GetMask("Default");
+
+        int layerDefault = LayerMask.GetMask("Default");
+        int layerCrewmates = LayerMask.GetMask("Crewmates");
         Vector3 rot = transform.rotation * Vector3.up;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rot, 1000f, layer);
-        if (hit.collider != null)
+        RaycastHit2D hitDefault = Physics2D.Raycast(laserStartPoint.position, rot, 1000f, layerDefault);
+        // RaycastHit2D hitCrewmate = Physics2D.Raycast(laserStartPoint.position, rot, 1000f, layerCrewmates);
+
+        RaycastHit2D usedHit = hitDefault;
+        // if (hitDefault.collider == null)
+        // {
+        //     usedHit = hitCrewmate;
+        // }
+        // else if (hitCrewmate.collider == null)
+        // {
+        //     usedHit = hitDefault;
+        // }
+        // else
+        // {
+        //     float distanceDefault = hitDefault.distance;
+        //     float distanceCrewmate = hitCrewmate.distance;
+        //     if (distanceDefault < distanceCrewmate)
+        //     {
+        //         usedHit = hitDefault;
+        //     }
+        //     else
+        //     {
+        //         usedHit = hitCrewmate;
+        //     }
+        // }
+
+        if (usedHit.collider != null)
         {
-            float distance = Mathf.Abs(hit.point.y - transform.position.y);
-            distance = hit.distance;
-            var destination = hit.point;
+            float distance = Mathf.Abs(usedHit.point.y - transform.position.y);
+            distance = usedHit.distance;
+            var destination = usedHit.point;
             //Debug.Log("hit", hit.transform.gameObject);
             //Debug.Log("Distance: "+distance);
 
@@ -99,12 +128,12 @@ public class LaserEmitter : Phaseable
             var b = laserSprite.bounds;
             b.Encapsulate(laserSprite.bounds);
             laserCollider.offset = b.center - laserSegment.transform.position;
-            laserCollider.size = new Vector2(0.5f,distance);
+            laserCollider.size = new Vector2(0.5f, distance);
 
-            GameObject newHit = hit.transform.gameObject;
-            if (laserRayTarget!=newHit)
+            GameObject newHit = usedHit.transform.gameObject;
+            if (laserRayTarget != newHit)
             {
-                if (laserRayTarget!=null)
+                if (laserRayTarget != null)
                 {
                     LaserTargetable lt = laserRayTarget.GetComponent<LaserTargetable>();
                     if (lt != null)
@@ -127,7 +156,7 @@ public class LaserEmitter : Phaseable
     // Update is called once per frame
     void Update()
     {
-        if (laserRayTarget!=null)
+        if (laserRayTarget != null)
         {
             LaserTargetable lt = laserRayTarget.GetComponent<LaserTargetable>();
             if (lt != null)
@@ -135,7 +164,6 @@ public class LaserEmitter : Phaseable
                 lt.Frizzle(Time.deltaTime);
                 if (lt.Broken)
                 {
-                    lt.Break();
                     UpdateLaserSegments();
                 }
             }
