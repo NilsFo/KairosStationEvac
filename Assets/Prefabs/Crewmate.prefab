@@ -333,6 +333,10 @@ MonoBehaviour:
   myHitbox: {fileID: 3364912768194578611}
   rescued: 0
   graphicsObj: {fileID: 149923621}
+  deathShakeMagnitude: 0.15
+  deathShakeDuration: 0.2
+  moveBoxShakeMagnitude: 0
+  moveBoxShakeDuration: 0
 --- !u!50 &2344044034692930154
 Rigidbody2D:
   serializedVersion: 4
@@ -456,6 +460,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceBetweenPoints: 0.5
   pointPrefab: {fileID: 4284595030512633221, guid: ef4d4d06eb44e9f43a16a7554b336369, type: 3}
+  visible: 0
+  fadeSpeed: 4
 --- !u!1 &8608343975106054776
 GameObject:
   m_ObjectHideFlags: 0

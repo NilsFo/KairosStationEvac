@@ -225,8 +225,8 @@ public class GameState : MonoBehaviour
         selectedCrewmate = null;
         ResetCameraShake();
 
-        foreach (var p in myObservers)
-        {
+        for (var index = myObservers.Count - 1; index >= 0; index--) {
+            var p = myObservers [index];
             p.Reset();
         }
     }
