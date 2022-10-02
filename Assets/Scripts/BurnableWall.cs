@@ -13,6 +13,7 @@ public class BurnableWall : Phaseable
 
     public float brokenPercent;
     public bool broken;
+    public int frameVisible;
 
     private void Awake()
     {
@@ -56,18 +57,19 @@ public class BurnableWall : Phaseable
             o.SetActive(false);
         }
 
+        frameVisible = 0;
         for (int i = 0; i < framePercentages.Count; i++)
         {
             GameObject o = burningFrames[i];
             float t = framePercentages[i];
 
-            if (t >= brokenPercent)
+            if (t <= brokenPercent)
             {
-                o.SetActive(true);
+                frameVisible = i;
             }
         }
 
+        burningFrames[frameVisible].SetActive(true);
         myCollider.enabled = !broken;
     }
-
 }

@@ -14,7 +14,7 @@ public class LaserEmitter : Phaseable
     public BoxCollider2D laserCollider;
 
     public GameObject laserRayTarget;
-    private GameObject _lastKnownRayTarget;
+    public LaserReciever targetedReciever;
 
     public override void Start()
     {
@@ -53,7 +53,6 @@ public class LaserEmitter : Phaseable
 
         currentlyOn = true;
         laserRayTarget = null;
-        _lastKnownRayTarget = null;
         UpdateLaserSegments();
     }
 
@@ -66,7 +65,6 @@ public class LaserEmitter : Phaseable
 
         currentlyOn = false;
         laserRayTarget = null;
-        _lastKnownRayTarget = null;
         laserSegment.SetActive(false);
     }
 
@@ -133,12 +131,27 @@ public class LaserEmitter : Phaseable
             GameObject newHit = usedHit.transform.gameObject;
             if (laserRayTarget != newHit)
             {
-                if (laserRayTarget != null)
+                if (newHit != null)
                 {
-                    LaserTargetable lt = laserRayTarget.GetComponent<LaserTargetable>();
+                    LaserTargetable lt = newHit.GetComponent<LaserTargetable>();
                     if (lt != null)
                     {
                         lt.ResetTimer();
+                    }
+
+                    LaserReciever lr = newHit.GetComponent<LaserReciever>();
+                    if (lr != null)
+                    {
+                        if (targetedReciever != lr || targetedReciever == null)
+                        {
+                            if (targetedReciever != null)
+                            {
+                                targetedReciever.LooseLaser();
+                            }
+
+                            targetedReciever = lr;
+                            targetedReciever.RecieveLaser();
+                        }
                     }
                 }
             }

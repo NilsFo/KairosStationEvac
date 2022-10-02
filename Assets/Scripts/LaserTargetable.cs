@@ -68,4 +68,6 @@ public class LaserTargetable : Phaseable
         return _breakTimeCurrent / breakTime;
     }
     
+    
+
 }
