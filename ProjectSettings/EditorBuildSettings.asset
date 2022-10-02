@@ -11,4 +11,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 4c216336edeef114f84ba89510bf05ed
+  - enabled: 1
+    path: Assets/Scenes/LevelCaptain.unity
+    guid: dcd55c4a09852b14a9464351c1a0def5
+  - enabled: 1
+    path: Assets/Scenes/LevelOfficers.unity
+    guid: fab8e03136950514391d7d410d8f20fb
+  - enabled: 1
+    path: Assets/Scenes/LevelCargo.unity
+    guid: 1bed28265b3636748a030955521b43f0
+  - enabled: 1
+    path: Assets/Scenes/Level Shuttle.unity
+    guid: dbf4dc411df39be408fdff00c6114136
+  - enabled: 1
+    path: Assets/Scenes/LevelMedbay.unity
+    guid: 2cf7ef69a494b5a4c842b75bb6ba4432
+  - enabled: 1
+    path: Assets/Scenes/LevelReactor.unity
+    guid: dac61fee84151d943ad5bf5136613c64
+  - enabled: 1
+    path: Assets/Scenes/Level Crew Quarters.unity
+    guid: 9d308daed8d4dbd429091a2b66127116
   m_configObjects: {}

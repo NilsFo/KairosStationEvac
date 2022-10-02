@@ -6732,6 +6732,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2574118626340969857, guid: 5a935d5a1955fc74a86150d7dea2c8d2, type: 3}
+      propertyPath: levelName
+      value: LevelCaptain
+      objectReference: {fileID: 0}
     - target: {fileID: 2574118626340969859, guid: 5a935d5a1955fc74a86150d7dea2c8d2, type: 3}
       propertyPath: m_Name
       value: LevelButton
