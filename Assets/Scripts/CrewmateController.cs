@@ -16,6 +16,7 @@ public class CrewmateController : Phaseable
     public bool playerControlled;
     private static int n_frames = 50 * 10;
     private ushort[] _savedInputs = new ushort[n_frames];
+    private Vector2[] _savedPositions = new Vector2[n_frames];
     private int _frame;
     private Vector2 _initialPosition;
     private ushort _lastInput;
@@ -39,6 +40,7 @@ public class CrewmateController : Phaseable
 
     public bool SelectedForEvac => Game.selectedCrewmate == this;
     private bool _isMoving = false;
+    private PositionPath _positionPath;
 
     // Start is called before the first frame update
     public override void Start()
@@ -49,7 +51,9 @@ public class CrewmateController : Phaseable
         _phaseLoop = FindObjectOfType<GamePhaseLoop>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = spriteRenderer.GetComponent<Animator>();
+        _positionPath = GetComponentInChildren<PositionPath>();
         _initialPosition = transform.position;
+
     }
 
     void Update()
@@ -113,6 +117,7 @@ public class CrewmateController : Phaseable
             if (playerControlled)
             {
                 _savedInputs[_frame] = _lastInput;
+                _savedPositions [_frame] = transform.position;
                 //Debug.Log(input);
             }
             else if (_savedInputs != null)
@@ -198,6 +203,7 @@ public class CrewmateController : Phaseable
         {
             //Debug.Log("Deleting inputs");
             _savedInputs = new ushort[n_frames];
+            _savedPositions = new Vector2[n_frames];
             _animator.SetBool(AnimPanic, false);
         } else {
             _animator.SetBool(AnimPanic, true);
@@ -212,6 +218,10 @@ public class CrewmateController : Phaseable
 
     public override void PhasePlanning()
     {
+        if (playerControlled) {
+            // Make path from positions
+            _positionPath.MakePath(_savedPositions);
+        }
         UpdateSelector();
 
         // Set visuals
@@ -229,6 +239,9 @@ public class CrewmateController : Phaseable
         {
             selectorSmall.SetActive(false);
             selectorBig.SetActive(false);
+            _positionPath.gameObject.SetActive(false);
+            _positionPath.visible = false;
+            _positionPath.Alpha = 0;
             return;
         }
 
@@ -236,11 +249,14 @@ public class CrewmateController : Phaseable
         {
             selectorSmall.SetActive(true);
             selectorBig.SetActive(false);
+            _positionPath.gameObject.SetActive(true);
+            _positionPath.visible = true;
         }
         else
         {
             selectorSmall.SetActive(false);
             selectorBig.SetActive(true);
+            _positionPath.visible = false;
         }
     }
 
