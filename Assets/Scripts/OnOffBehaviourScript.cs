@@ -146,7 +146,7 @@ public class OnOffBehaviourScript : Phaseable
         currentActivationState = true;
         OmActivateEvent.Invoke(caller);
         if (IsSwitch) currentTimer = InitTimer;
-        Debug.Log(IsSwitch);
+        // Debug.Log(IsSwitch);
         UpdateState();
     }
     

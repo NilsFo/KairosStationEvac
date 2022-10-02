@@ -12,7 +12,11 @@ public abstract class Phaseable : MonoBehaviour
     {
     }
 
-    public virtual void PhaseWin()
+    public virtual void OnWin()
+    {
+    }
+
+    public virtual void OnWinOnce()
     {
     }
 

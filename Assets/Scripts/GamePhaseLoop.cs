@@ -26,7 +26,13 @@ public class GamePhaseLoop : MonoBehaviour
         _currentPhase = myGameState.currentPhase;
         if (_currentPhase == GameState.Phase.Unknown)
         {
-            Debug.LogError("UNKNOWN SATE!");
+            Debug.LogError("UNKNOWN STATE!");
+        }
+
+        if (_currentPhase == GameState.Phase.PlanningPhase && myGameState.levelWon)
+        {
+            SetPhaseEvac();
+            return;
         }
 
         //////////////////////////////////////
@@ -36,27 +42,30 @@ public class GamePhaseLoop : MonoBehaviour
         /// Back to menu / cancel
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            switch (_currentPhase)
+            if (myGameState.levelWon)
             {
-                case GameState.Phase.Unknown:
-                    myGameState.BackToMainMenu();
-                    return;
-                case GameState.Phase.EvacuationPhase:
-                case GameState.Phase.ExplosionPhase:
-                    SetPhasePlanning();
-                    return;
-                case GameState.Phase.WinState:
-                    myGameState.BackToMainMenu();
-                    return;
-                case GameState.Phase.PlanningPhase:
-                    myGameState.BackToMainMenu();
-                    return;
+                myGameState.NextLevel();
+                return;
             }
+            
+            if (_currentPhase == GameState.Phase.EvacuationPhase)
+            {
+                SetPhasePlanning();
+            }
+
+            myGameState.BackToMainMenu();
+            return;
         }
 
         // Changing phase by pressing space or Q
-        if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Space))
         {
+            if (myGameState.levelWon)
+            {
+                myGameState.NextLevel();
+                return;
+            }
+            
             switch (_currentPhase)
             {
                 case GameState.Phase.EvacuationPhase:
@@ -72,7 +81,7 @@ public class GamePhaseLoop : MonoBehaviour
             }
         }
 
-        if (_currentPhase == GameState.Phase.WinState || _currentPhase == GameState.Phase.Unknown)
+        if (_currentPhase == GameState.Phase.Unknown)
         {
             return;
         }
@@ -83,7 +92,14 @@ public class GamePhaseLoop : MonoBehaviour
             if (timer >= phaseLengthEvac)
             {
                 timer = 0;
-                SetPhaseExplosion();
+                if (myGameState.levelWon)
+                {
+                    SetPhasePlanning();
+                }
+                else
+                {
+                    SetPhaseExplosion();
+                }
             }
         }
 

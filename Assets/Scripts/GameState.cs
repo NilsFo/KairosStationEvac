@@ -5,6 +5,7 @@ using System.Timers;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameState : MonoBehaviour
@@ -14,16 +15,19 @@ public class GameState : MonoBehaviour
         Unknown,
         EvacuationPhase,
         PlanningPhase,
-        ExplosionPhase,
-        WinState
+        ExplosionPhase
     }
+
+    public string nextLevelName="";
 
     private bool firstCleanDone = false;
     public Phase currentPhase = Phase.Unknown;
     private Phase _lastKnownPhase;
+    public bool levelWon = false;
     public UnityEvent onPhasePlaying;
     public UnityEvent onPhasePlanning;
     public UnityEvent onWin;
+    public UnityEvent onWinOnce;
     public UnityEvent onExplosion;
     public UnityEvent onResetGameplay;
 
@@ -55,9 +59,11 @@ public class GameState : MonoBehaviour
         if (onPhasePlaying == null) onPhasePlaying = new UnityEvent();
         if (onPhasePlanning == null) onPhasePlanning = new UnityEvent();
         if (onWin == null) onWin = new UnityEvent();
+        if (onWinOnce == null) onWinOnce = new UnityEvent();
         if (onResetGameplay == null) onResetGameplay = new UnityEvent();
         if (onExplosion == null) onExplosion = new UnityEvent();
 
+        levelWon = false;
         CMCameraFocus = GameObject.FindGameObjectWithTag("CameraFocus");
         ResetCameraShake();
     }
@@ -146,8 +152,20 @@ public class GameState : MonoBehaviour
     private void WinGame()
     {
         selectedCrewmate = null;
-        print("A winner is you!");
-        currentPhase = Phase.WinState;
+
+        if (!levelWon)
+        {
+            print("A winner is you!");
+            
+            onWinOnce.Invoke();
+            foreach (var p in myObservers)
+            {
+                p.OnWinOnce();
+            }
+        }
+
+        OnWin();
+        levelWon = true;
     }
 
     private void OnStateChanged()
@@ -160,9 +178,6 @@ public class GameState : MonoBehaviour
                 break;
             case Phase.EvacuationPhase:
                 OnPhaseEvacuate();
-                break;
-            case Phase.WinState:
-                OnPhaseWin();
                 break;
             case Phase.ExplosionPhase:
                 OnPhaseExplosion();
@@ -201,15 +216,15 @@ public class GameState : MonoBehaviour
         }
     }
 
-    private void OnPhaseWin()
+    private void OnWin()
     {
         onWin.Invoke();
         foreach (var p in myObservers)
         {
-            p.PhaseWin();
+            p.OnWin();
         }
     }
-
+    
     private void OnPhaseExplosion()
     {
         onExplosion.Invoke();
@@ -233,8 +248,16 @@ public class GameState : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        print("Back to main menu.");
-        // TODO implement
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+
+    public void NextLevel()
+    {
+        if (string.IsNullOrEmpty(nextLevelName))
+        {
+            BackToMainMenu();
+        }
+        SceneManager.LoadScene(nextLevelName, LoadSceneMode.Single);
     }
 
     public void DisplayFloatingText(Vector3 position, string text, float duration = 3f, float fontSize = 0.69f,
