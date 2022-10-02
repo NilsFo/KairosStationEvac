@@ -13,6 +13,10 @@ public class ConnectionUI : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         _tilemap = GetComponent<Tilemap>();
+        
+        var tilemapColor = _tilemap.color;
+        tilemapColor.a = _alpha;
+        _tilemap.color = tilemapColor;
     }
 
     // Update is called once per frame
@@ -34,11 +38,11 @@ public class ConnectionUI : MonoBehaviour {
                 if (_alpha < 0) {
                     _alpha = 0;
                 }
+                var tilemapColor = _tilemap.color;
+                tilemapColor.a = _alpha;
+                _tilemap.color = tilemapColor;
             }
             
-            var tilemapColor = _tilemap.color;
-            tilemapColor.a = _alpha;
-            _tilemap.color = tilemapColor;
         }
     }
 
