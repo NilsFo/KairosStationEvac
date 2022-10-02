@@ -25,8 +25,13 @@ public class GamePhaseLoop : MonoBehaviour
             Debug.LogError("UNKNOWN SATE!");
         }
 
+        //////////////////////////////////////
         //Checking for inputs
-        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Q))
+        //////////////////////////////////////
+        
+        
+        /// Back to menu / cancel
+        if (Input.GetKey(KeyCode.Escape))
         {
             switch (_currentPhase)
             {
@@ -41,6 +46,21 @@ public class GamePhaseLoop : MonoBehaviour
                     return;
                 case GameState.Phase.PlanningPhase:
                     myGameState.BackToMainMenu();
+                    return;
+            }
+        }
+        
+        // Changing phase by pressing space or Q
+        if (Input.GetKey(KeyCode.Q) ||Input.GetKey(KeyCode.Space))
+        {
+            switch (_currentPhase)
+            {
+                case GameState.Phase.EvacuationPhase:
+                    NextPhase();
+                    return;
+                case GameState.Phase.PlanningPhase:
+                    myGameState.selectedCrewmate = null;
+                    NextPhase();
                     return;
             }
         }

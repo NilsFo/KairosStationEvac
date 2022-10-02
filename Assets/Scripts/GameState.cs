@@ -133,18 +133,14 @@ public class GameState : MonoBehaviour
             c.playerControlled = false;
         }
 
-        selectedCrewmate.playerControlled = true;
+        if (selectedCrewmate != null)
+        {
+            selectedCrewmate.playerControlled = true;
+        }
 
         foreach (var p in myObservers)
         {
             p.PhaseEvacuate();
-        }
-
-        if (selectedCrewmate == null)
-        {
-            Debug.LogError("BIG ERROR! NO CREWMATE SELECTED!!!!");
-            currentPhase = Phase.Unknown;
-            return;
         }
     }
 
@@ -184,7 +180,7 @@ public class GameState : MonoBehaviour
         // TODO implement
     }
 
-    public void DisplayFloatingText(Vector3 position, string text, float duration=3f, float fontSize = 0.69f,
+    public void DisplayFloatingText(Vector3 position, string text, float duration = 3f, float fontSize = 0.69f,
         float velocity_Y = 0.15f, float velocity_Z = 0f, float velocity_X = 0f)
     {
         var newObj = Instantiate(floatingTextPrefab, position, Quaternion.identity);
