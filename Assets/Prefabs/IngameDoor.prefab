@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8779908274801658105}
   m_Layer: 0
   m_Name: Open
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 9077390632520163557}
   m_Layer: 0
   m_Name: Closed
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 4220565509041746902}
   m_Layer: 0
   m_Name: IngameDoor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -272,11 +272,14 @@ MonoBehaviour:
   offGameObject: {fileID: 4959633324867969467}
   onGameObject: {fileID: 840059104207187570}
   disableGameObject: {fileID: 6668485069764750953}
-  IsToggleable: 1
-  InitState: 0
-  InitActiveEnable: 1
-  currentState: 0
-  currentActiveEnable: 0
+  altOnGameObject: []
+  ButtonType: 1
+  InitActivationState: 0
+  InitPowerState: 1
+  InitTimer: 4
+  currentActivationState: 0
+  currentPowerState: 0
+  currentTimer: 0
   OmEnableEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -289,6 +292,12 @@ MonoBehaviour:
   OmDeactivateEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnActivationText: 
+  OnDeactivationText: 
+  OnEnablePowerText: 
+  OnDisablePowerText: 
+  OnNoPower: 
+  OnAlreadyUsed: 
 --- !u!1 &6668485069764750953
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +311,7 @@ GameObject:
   - component: {fileID: 9046015012222852920}
   m_Layer: 0
   m_Name: Disable
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
