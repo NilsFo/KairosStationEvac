@@ -40,7 +40,7 @@ public class LaserTargetable : Phaseable
         }
 
         _breakTimeCurrent += amount;
-        print("fizzle: " + _breakTimeCurrent + "/" + breakTime);
+        // print("fizzle: " + _breakTimeCurrent + "/" + breakTime);
 
         if (Broken)
         {
@@ -57,4 +57,15 @@ public class LaserTargetable : Phaseable
     {
         brokenByLaser.Invoke();
     }
+
+    public float GetDestructionPercent()
+    {
+        if (Broken)
+        {
+            return 1f;
+        }
+
+        return _breakTimeCurrent / breakTime;
+    }
+    
 }
