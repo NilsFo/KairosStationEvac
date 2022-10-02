@@ -27,7 +27,7 @@ public class ExplosionBehaviourScript : Phaseable
 
     public override void PhaseEvacuate()
     {
-        localTime = 0;
+        localTime = InitIndicatorTime + InitExplodeTime;
         isOnFire = false;
         Indicator.SetActive(false);
         Explosion.SetActive(false);
@@ -59,10 +59,11 @@ public class ExplosionBehaviourScript : Phaseable
 
     public void Explode()
     {
-        for (int i = 0; i < _crewmateControllers.Count; i++)
+        for (int i = _crewmateControllers.Count - 1; i >= 0; i--)
         {
             var crew = _crewmateControllers[i];
-            //TODO Crew kill
+            crew.Kill();
+            _crewmateControllers.RemoveAt(i);
         }
         isOnFire = true;
         Indicator.SetActive(false);
