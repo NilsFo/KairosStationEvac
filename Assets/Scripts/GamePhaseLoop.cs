@@ -47,7 +47,7 @@ public class GamePhaseLoop : MonoBehaviour
                 myGameState.NextLevel();
                 return;
             }
-            
+
             if (_currentPhase == GameState.Phase.EvacuationPhase)
             {
                 SetPhasePlanning();
@@ -65,7 +65,7 @@ public class GamePhaseLoop : MonoBehaviour
                 myGameState.NextLevel();
                 return;
             }
-            
+
             switch (_currentPhase)
             {
                 case GameState.Phase.EvacuationPhase:
@@ -142,5 +142,11 @@ public class GamePhaseLoop : MonoBehaviour
         }
 
         return "N/A";
+    }
+
+    public int GetTimerForUI()
+    {
+        int i = (int) timer;
+        return phaseLengthEvac - i;
     }
 }
