@@ -14,6 +14,7 @@ public class TutorialTextBox : MonoBehaviour
     private float _visibleTimer;
     private bool visibleRequested;
     public bool visible;
+    public bool returnToMainMenu=false;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +66,14 @@ public class TutorialTextBox : MonoBehaviour
         Hide();
         if (nextBox == null)
         {
-            _loop.SetPhasePlanning();
+            if (returnToMainMenu)
+            {
+                _loop.myGameState.BackToMainMenu();
+            }
+            else
+            {
+                _loop.SetPhasePlanning();
+            }
         }
         else
         {
