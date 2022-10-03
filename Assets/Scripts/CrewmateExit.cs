@@ -10,5 +10,6 @@ public class CrewmateExit : MonoBehaviour
         CrewmateController controller = caller.GetComponent<CrewmateController>();
         if (controller == null) return;
         controller.Rescue();
+        GetComponent<AudioSource>().Play();
     }
 }
