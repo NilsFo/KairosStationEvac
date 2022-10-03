@@ -11,6 +11,8 @@ public class BurnableWall : Phaseable
     public LaserTargetable myLaserTarget;
     public BoxCollider2D myCollider;
 
+    public AudioSource breakSound;
+
     public float brokenPercent;
     public bool broken;
     public int frameVisible;
@@ -49,6 +51,10 @@ public class BurnableWall : Phaseable
 
     private void UpdateState()
     {
+        if (!broken && myLaserTarget.Broken) {
+            breakSound.Play();
+        }
+        
         brokenPercent = myLaserTarget.GetDestructionPercent();
         broken = myLaserTarget.Broken;
 

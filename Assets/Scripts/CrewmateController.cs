@@ -37,6 +37,7 @@ public class CrewmateController : Phaseable
     private bool alive = true;
     public bool rescued = false;
     public GameObject graphicsObj;
+    public AudioSource deathSound;
     private static readonly int AnimDoor = Animator.StringToHash("door");
     private static readonly int AnimDeath = Animator.StringToHash("death");
 
@@ -319,6 +320,9 @@ public class CrewmateController : Phaseable
 
         // CameraShake
         Game.ShakeCamera(deathShakeMagnitude, deathShakeDuration);
+        
+        //Audio
+        deathSound.Play();
 
         //Game.DisplayFloatingText(transform.position, "'I am dead. No big surprise.'");
         myHitbox.enabled = false;
