@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Crew Quarters.unity
     guid: 9d308daed8d4dbd429091a2b66127116
+  - enabled: 1
+    path: Assets/Scenes/Level Shuttle.unity
+    guid: da193cfb8d71278428f9df897a617000
   m_configObjects: {}

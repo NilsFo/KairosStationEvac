@@ -329,7 +329,7 @@ MonoBehaviour:
   selectorBig: {fileID: 2250066046801806021}
   playerControlIndicator: {fileID: 8558559163312301439}
   playerControlled: 0
-  speed: 2.5
+  speed: 3.25
   startFlipped: 0
   spriteRenderer: {fileID: 149923623}
   myHitbox: {fileID: 3364912768194578611}
