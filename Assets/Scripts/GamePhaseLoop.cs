@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -86,9 +87,22 @@ public class GamePhaseLoop : MonoBehaviour
             return;
         }
 
-        if (_currentPhase == GameState.Phase.EvacuationPhase)
+
+        if (_currentPhase == GameState.Phase.ExplosionPhase)
         {
             timer += Time.deltaTime;
+            if (timer >= phaseLengthExplosion)
+            {
+                timer = 0;
+                SetPhasePlanning();
+            }
+        }
+    }
+
+    private void FixedUpdate() {
+        if (_currentPhase == GameState.Phase.EvacuationPhase)
+        {
+            timer += Time.fixedDeltaTime;
             if (timer >= phaseLengthEvac)
             {
                 timer = 0;
@@ -100,16 +114,6 @@ public class GamePhaseLoop : MonoBehaviour
                 {
                     SetPhaseExplosion();
                 }
-            }
-        }
-
-        if (_currentPhase == GameState.Phase.ExplosionPhase)
-        {
-            timer += Time.deltaTime;
-            if (timer >= phaseLengthExplosion)
-            {
-                timer = 0;
-                SetPhasePlanning();
             }
         }
     }
