@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class UITilemapObjective : Phaseable
 {
+    public GameObject winPopup;
     public Tilemap myMap;
     public Vector2Int firstDigit;
     public Vector2Int secondDigit;
@@ -49,33 +50,37 @@ public class UITilemapObjective : Phaseable
 
     private void UpdateText()
     {
+        winPopup.SetActive(Game.levelWon);
         tilemapPlanning.SetActive(false);
         tilemapEvac.SetActive(false);
         timeRemaining = _phaseLoop.GetTimerForUI();
 
-        if (Game.currentPhase == GameState.Phase.PlanningPhase)
+        if (!Game.levelWon)
         {
-            tilemapPlanning.SetActive(true);
-        }
-
-        if (Game.currentPhase == GameState.Phase.EvacuationPhase)
-        {
-            tilemapEvac.SetActive(true);
-            Vector3Int f = new Vector3Int(firstDigit.x, firstDigit.y, 0);
-            Vector3Int s = new Vector3Int(secondDigit.x, secondDigit.y, 0);
-
-            int digit = timeRemaining;
-            if (timeRemaining >= 10)
+            if (Game.currentPhase == GameState.Phase.PlanningPhase)
             {
-                myMap.SetTile(f, dictionary.Get(1));
-                digit = digit - 10;
-            }
-            else
-            {
-                myMap.SetTile(f, dictionary.Get(0));
+                tilemapPlanning.SetActive(true);
             }
 
-            myMap.SetTile(s, dictionary.Get(digit));
+            if (Game.currentPhase == GameState.Phase.EvacuationPhase)
+            {
+                tilemapEvac.SetActive(true);
+                Vector3Int f = new Vector3Int(firstDigit.x, firstDigit.y, 0);
+                Vector3Int s = new Vector3Int(secondDigit.x, secondDigit.y, 0);
+
+                int digit = timeRemaining;
+                if (timeRemaining >= 10)
+                {
+                    myMap.SetTile(f, dictionary.Get(1));
+                    digit = digit - 10;
+                }
+                else
+                {
+                    myMap.SetTile(f, dictionary.Get(0));
+                }
+
+                myMap.SetTile(s, dictionary.Get(digit));
+            }
         }
     }
 }

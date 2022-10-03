@@ -49,6 +49,8 @@ public class CrewmateController : Phaseable
     private bool _isMoving = false;
     private PositionPath _positionPath;
 
+    private bool _inputConsumed;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -65,8 +67,11 @@ public class CrewmateController : Phaseable
 
     void Update()
     {
-        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive)
-        {
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive) {
+            if (_inputConsumed) {
+                _lastInput = 0;
+                _inputConsumed = false;
+            }
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 _lastInput = (ushort) (_lastInput | 0b0000_1000);
@@ -145,8 +150,8 @@ public class CrewmateController : Phaseable
             ExecuteInput(_lastInput);
 
             Animate();
-            
-            _lastInput = 0;
+
+            _inputConsumed = true;
             _frame++;
         }
     }
@@ -207,7 +212,7 @@ public class CrewmateController : Phaseable
     {
         //Debug.Log(movement);
         var position = transform.position;
-        _rigidbody2D.MovePosition(new Vector2(position.x, position.y) + movement * speed * Time.fixedDeltaTime);
+        _rigidbody2D.MovePosition(new Vector2(position.x, position.y) + speed * Time.fixedDeltaTime * movement);
     }
 
     public override void PhaseEvacuate()
