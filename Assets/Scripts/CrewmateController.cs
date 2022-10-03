@@ -351,6 +351,14 @@ public class CrewmateController : Phaseable
             Kill();
     }
 
+    public override void PhaseTutorial() {
+        
+        _animator.SetBool(AnimRunning, false);
+        playerControlIndicator.SetActive(false);
+        spriteRenderer.flipX = startFlipped;
+
+    }
+
     private void OnMouseDown()
     {
 //        print("A crewmate has been clicked.");
