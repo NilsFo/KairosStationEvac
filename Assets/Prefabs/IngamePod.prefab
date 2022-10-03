@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 766037150873593411}
   - component: {fileID: 6911392858734182889}
   - component: {fileID: 1165735430172745402}
+  - component: {fileID: 3527511681095302093}
   m_Layer: 0
   m_Name: IngamePod
   m_TagString: Untagged
@@ -388,15 +389,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3527511681095302093}
+        m_TargetAssemblyTypeName: PodAnimation, Assembly-CSharp
+        m_MethodName: Fill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OmDeactivateEvent:
     m_PersistentCalls:
-      m_Calls: []
-  OnActivationText: 
-  OnDeactivationText: 
-  OnEnablePowerText: 
-  OnDisablePowerText: 
-  OnNoPower: 
-  OnAlreadyUsed: 
+      m_Calls:
+      - m_Target: {fileID: 3527511681095302093}
+        m_TargetAssemblyTypeName: PodAnimation, Assembly-CSharp
+        m_MethodName: Empty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  animator: {fileID: 0}
 --- !u!114 &6911392858734182889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,7 +429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7aec460d3439ed4bb36c68e8544a880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1165735430172745402}
 --- !u!95 &1165735430172745402
 Animator:
   serializedVersion: 4
@@ -430,3 +449,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3527511681095302093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089928944944430385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c33d8db4feeef4ca4419f349fdb420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1165735430172745402}

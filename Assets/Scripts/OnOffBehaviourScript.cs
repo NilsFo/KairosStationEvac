@@ -39,15 +39,8 @@ public class OnOffBehaviourScript : Phaseable
     public UnityEvent<GameObject> OmActivateEvent;
     public UnityEvent<GameObject> OmDeactivateEvent;
 
-    [Header("Flavortext")] 
-    public string OnActivationText = "";
-    public string OnDeactivationText = "";
-    public string OnEnablePowerText = "";
-    public string OnDisablePowerText = "";
-
-    [Header("Flavortext Denied Activation")]
-    public string OnNoPower = "";
-    public string OnAlreadyUsed = "";
+    [SerializeField] private Animator animator;
+    private static readonly int Full = Animator.StringToHash("full");
 
     public bool IsToggleable => (ButtonType == OnOffType.Toggle);
 
