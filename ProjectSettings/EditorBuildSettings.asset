@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelCargo.unity
     guid: 1bed28265b3636748a030955521b43f0
   - enabled: 1
-    path: Assets/Scenes/Level Shuttle.unity
+    path: Assets/Scenes/Level Laboratory.unity
     guid: dbf4dc411df39be408fdff00c6114136
   - enabled: 1
     path: Assets/Scenes/LevelMedbay.unity
