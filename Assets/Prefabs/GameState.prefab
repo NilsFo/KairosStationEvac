@@ -47,12 +47,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevelName: 
-  currentPhase: 0
+  tutorialLevel: 0
+  limitedUI: 0
+  firstTutorialBox: {fileID: 0}
+  currentPhase: 2
   levelWon: 0
+  showingSplashScreen: 0
+  winTimer: 0
   onPhaseEvacuate:
     m_PersistentCalls:
       m_Calls: []
   onPhasePlanning:
+    m_PersistentCalls:
+      m_Calls: []
+  onPhaseSplash:
+    m_PersistentCalls:
+      m_Calls: []
+  onPhaseTutorial:
     m_PersistentCalls:
       m_Calls: []
   onWin:
@@ -67,6 +78,7 @@ MonoBehaviour:
   onResetGameplay:
     m_PersistentCalls:
       m_Calls: []
+  showingConfirmPopup: 0
   selectedCrewmate: {fileID: 0}
   floatingTextPrefab: {fileID: 6658745519226898469, guid: cceb498c7f8f7eb4eb839a2ef4ddd5f5, type: 3}
   CMCameraFocus: {fileID: 0}
