@@ -17,7 +17,7 @@ public class GamePhaseLoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myGameState.currentPhase = GameState.Phase.PlanningPhase;
+        myGameState.currentPhase = GameState.Phase.LevelSplash;
         timer = 0;
     }
 
@@ -34,13 +34,34 @@ public class GamePhaseLoop : MonoBehaviour
         //Checking for inputs
         //////////////////////////////////////
 
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("Pressed mouse button.");
+            if (myGameState.showingSplashScreen)
+            {
+                if (myGameState.tutorialLevel)
+                {
+                    SetPhaseTutorial();
+                }
+                else
+                {
+                    SetPhasePlanning();
+                }
+            }
+        }
+
         /// Back to menu / cancel
-        if (Input.GetKeyUp(KeyCode.KeypadEnter)||Input.GetKeyUp(KeyCode.Return))
+        if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetKeyUp(KeyCode.Return))
         {
             if (myGameState.levelWon)
             {
                 myGameState.NextLevel();
                 return;
+            }
+
+            if (_currentPhase == GameState.Phase.Tutorial || _currentPhase == GameState.Phase.LevelSplash)
+            {
+                myGameState.BackToMainMenu();
             }
 
             if (_currentPhase == GameState.Phase.EvacuationPhase)
@@ -51,13 +72,13 @@ public class GamePhaseLoop : MonoBehaviour
             {
                 if (myGameState.showingConfirmPopup)
                 {
-                    myGameState.showingConfirmPopup = false;  
+                    myGameState.showingConfirmPopup = false;
                 }
                 else
                 {
-                    if (_currentPhase==GameState.Phase.PlanningPhase)
+                    if (_currentPhase == GameState.Phase.PlanningPhase)
                     {
-                        myGameState.showingConfirmPopup = true;  
+                        myGameState.showingConfirmPopup = true;
                     }
                 }
             }
@@ -71,6 +92,7 @@ public class GamePhaseLoop : MonoBehaviour
                 myGameState.BackToMainMenu();
                 return;
             }
+
             if (myGameState.levelWon)
             {
                 myGameState.NextLevel();
@@ -146,6 +168,18 @@ public class GamePhaseLoop : MonoBehaviour
     }
 
     public void SetPhasePlanning()
+    {
+        timer = 0;
+        myGameState.currentPhase = GameState.Phase.PlanningPhase;
+    }
+
+    public void SetPhaseSplash()
+    {
+        timer = 0;
+        myGameState.currentPhase = GameState.Phase.LevelSplash;
+    }
+
+    public void SetPhaseTutorial()
     {
         timer = 0;
         myGameState.currentPhase = GameState.Phase.PlanningPhase;

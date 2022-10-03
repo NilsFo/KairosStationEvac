@@ -7,6 +7,7 @@ public class UITilemapObjective : Phaseable
 {
     public GameObject winPopup;
     public GameObject confirmBackPopup;
+    public GameObject splashScreen;
 
     public Tilemap myMap;
     public Vector2Int firstDigit;
@@ -54,6 +55,7 @@ public class UITilemapObjective : Phaseable
     {
         winPopup.SetActive(Game.levelWon);
         confirmBackPopup.SetActive(Game.showingConfirmPopup);
+        splashScreen.SetActive(Game.showingSplashScreen);
 
         tilemapPlanning.SetActive(false);
         tilemapEvac.SetActive(false);

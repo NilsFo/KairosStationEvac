@@ -19,6 +19,14 @@ public abstract class Phaseable : MonoBehaviour
     public virtual void OnWinOnce()
     {
     }
+    
+    public virtual void PhaseSplash()
+    {
+    }
+    
+    public virtual void PhaseTutorial()
+    {
+    }
 
     public virtual void Start()
     {
