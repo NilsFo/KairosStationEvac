@@ -2474,7 +2474,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2495,7 +2495,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2516,7 +2516,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2537,7 +2537,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2558,7 +2558,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2579,7 +2579,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2587,6 +2587,741 @@ TextureImporter:
       bones: []
       spriteID: 965198f91f83f074387e1905d31998eb
       internalID: 1344053974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_85
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 258
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff3573d32ba6e347805dff556169cd2
+      internalID: 202138466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_86
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 258
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d637b50ee690640ac9b83bace6633c
+      internalID: 1087231761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_87
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 258
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70a4a326232864147b660688d0193ae6
+      internalID: 373183095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_88
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 246
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e22a1f61f296f64cbcb281cdc9af7cb
+      internalID: -516138848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_89
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 246
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48a5bc2d364913546b08786849d6a252
+      internalID: 903738413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_90
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 234
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7445fb008226a514daf4aefff207fac7
+      internalID: -1618214819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_91
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 234
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24ebdf4aadd465d4c914c5e87cdf6bb4
+      internalID: 1357785259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_92
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 234
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3be6c9a131342f4398e874c8bab4a4b
+      internalID: 1511287117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_93
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 162
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88ccabff7a2a18459e2cd3e5df67169
+      internalID: -603642305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_94
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 126
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38cf736ab82380b4ab32b38d9ee3d3a3
+      internalID: -1930031193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_95
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 126
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61397c4076990b5439eda10a5de788b8
+      internalID: 2004552299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_96
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 126
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df06885d4321fbb448685b1d0f19e4d1
+      internalID: 864715353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_97
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 126
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e822c9d6192a6d4d89bfa8acf6b0d16
+      internalID: 175036993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_98
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 126
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01048c5c9a3c515419b0c2423e58a40b
+      internalID: -2097993657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_99
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 114
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d70e76f0e778fd14ab52590c61f17bcb
+      internalID: -1677710629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_100
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 114
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f1594e2ae7673e42ba5f6d217909add
+      internalID: 126283471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_101
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 114
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb5618fe4fa26e48b6a8b6dfa735431
+      internalID: 1798902000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_102
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 114
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79bd4c8caeb86c049b06a29bc7f86c9d
+      internalID: -1999875048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_103
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 114
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd2d53ad321f2441aa55c5992bfdbe0
+      internalID: -1943152901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_104
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 114
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef8dc66a47e25249a69248006bb7bc1
+      internalID: 1117764803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_105
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 102
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03c38065fc474694aa160523e33b6a28
+      internalID: 1550886779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_106
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 102
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1a10050fd844a47a306a6f611dfe0b
+      internalID: 705676813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_107
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 102
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 503872320b68d3344bcf7d5406ff198e
+      internalID: -651994091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_108
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 102
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6c6ad8f601a8aa438732f0f6c9209d4
+      internalID: -1918413587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_109
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 102
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3944ed5914d45af4dad61983a2cb74ea
+      internalID: -1359557411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_110
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 90
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9247da58a36d1b439895a95f2559c10
+      internalID: 1841175251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_111
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 90
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9660a3ef8bb6f0746924035c6b4715e3
+      internalID: -985281499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_112
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 78
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65039d7eb4dc37148a6bfee5318f36ad
+      internalID: 1237431926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_113
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 78
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf377b3ffae2cd459b4a5db87ec75df
+      internalID: 1698811055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_114
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 78
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2bc35df038a2245addc753023fa3f0
+      internalID: -100418676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_115
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 78
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35454db505ffbb48ad43030145c4e0a
+      internalID: -1334704008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_116
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257a8dfa10cd1b04490d2021ac7efeb0
+      internalID: -2062689099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_117
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b8668f5f29f9047b602ea237d34000
+      internalID: 595472436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_118
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd0a856770e6b084395bc48bf4d7c11e
+      internalID: -722951456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kairos_tiles_119
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 66
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0f6e1f1090b97e4db8e95800f4130ab
+      internalID: -973442680
       vertices: []
       indices: 
       edges: []
@@ -2605,6 +3340,8 @@ TextureImporter:
       kairos_tiles_66: 1712364451
       kairos_tiles_11: 307673689
       kairos_tiles_80: 2103484466
+      kairos_tiles_87: 373183095
+      kairos_tiles_107: -651994091
       kairos_tiles_43: -1222898930
       kairos_tiles_5: 1244255350
       kairos_tiles_9: 834825133
@@ -2612,14 +3349,19 @@ TextureImporter:
       displayOff: -34213164
       kairos_tiles_64: 1625808764
       kairos_tiles_2: -734020931
+      kairos_tiles_112: 1237431926
       displayOn_2: -709321472
       kairos_tiles_14: 1995873616
       kairos_tiles_30: -308969093
       kairos_tiles_81: 654624164
+      kairos_tiles_116: -2062689099
+      kairos_tiles_100: 126283471
+      kairos_tiles_111: -985281499
       kairos_tiles_56: -1668243796
       kairos_tiles_34: -180614728
       kairos_tiles_82: 365478515
       buttonDisabled: -1016350253
+      kairos_tiles_104: 1117764803
       kairos_tiles_39: 1051151174
       kairos_tiles_71: 164304476
       kairos_tiles_24: -835313618
@@ -2628,9 +3370,13 @@ TextureImporter:
       kairos_tiles_29: -742993572
       kairos_tiles_51: 462245383
       kairos_tiles_21: 983959306
+      kairos_tiles_90: -1618214819
+      kairos_tiles_93: -603642305
       leverOn: 14118489
       displayOn_3: 930641707
       podlDisabled: 1690886801
+      kairos_tiles_109: -1359557411
+      kairos_tiles_94: -1930031193
       kairos_tiles_22: 398681851
       kairos_tiles_44: -419872899
       displayOff_3: -1871620479
@@ -2642,19 +3388,24 @@ TextureImporter:
       displayDisabled: -1401191843
       doorDisable: 1751986106
       kairos_tiles_69: -402127181
+      kairos_tiles_95: 2004552299
       kairos_tiles_32: -581289457
       fire: 1497201272
       kairos_tiles_1: 1366771173
       displayOff_2: 1754425193
+      kairos_tiles_99: -1677710629
       kairos_tiles_58: -2088119212
+      kairos_tiles_98: -2097993657
       kairos_tiles_62: 912956539
       kairos_tiles_75: 377925200
       kairos_tiles_10: 1184314403
       kairos_tiles_49: 1504649560
+      kairos_tiles_108: -1918413587
       podOn: 641867591
       kairos_tiles_60: -458842158
       kairos_tiles_27: 1404623346
       kairos_tiles_20: 929650067
+      kairos_tiles_115: -1334704008
       kairos_tiles_78: -2091806806
       kairos_tiles_48: -1550488868
       kairos_tiles_40: 274935393
@@ -2662,32 +3413,50 @@ TextureImporter:
       kairos_tiles_16: 1797314358
       displayOn: -2133435852
       kairos_tiles_13: -95353740
+      kairos_tiles_89: 903738413
       kairos_tiles_55: -1076022023
       podOff: 548149107
+      kairos_tiles_91: 1357785259
+      kairos_tiles_114: -100418676
+      kairos_tiles_113: 1698811055
       kairos_tiles_42: -155326417
       kairos_tiles_31: 1730526311
+      kairos_tiles_105: 1550886779
       kairos_tiles_33: 685748544
       kairos_tiles_50: 1236062674
       kairos_tiles_38: -1889676689
       displayOn_1: 811488050
       kairos_tiles_74: 178184742
+      kairos_tiles_101: 1798902000
+      kairos_tiles_110: 1841175251
       displayOff_1: -1247918001
       kairos_tiles_70: -1061334440
       kairos_tiles_47: -210245192
+      kairos_tiles_85: 202138466
       kairos_tiles_68: -1488006964
       kairos_tiles_67: 1725430386
       kairos_tiles_8: -1927649940
+      kairos_tiles_88: -516138848
       kairos_tiles_26: -1826726469
+      kairos_tiles_117: 595472436
       kairos_tiles_15: 1200760964
       displayOn_4: 1700915786
+      kairos_tiles_119: -973442680
       kairos_tiles_45: 1383511525
       kairos_tiles_84: 1344053974
       kairos_tiles_57: 1796091158
       kairos_tiles_23: -274167311
       kairos_tiles_36: 779064883
       kairos_tiles_19: -258180832
+      kairos_tiles_92: 1511287117
+      kairos_tiles_96: 864715353
+      kairos_tiles_103: -1943152901
       kairos_tiles_4: 37134117
+      kairos_tiles_86: 1087231761
       kairos_tiles_77: -547090725
+      kairos_tiles_102: -1999875048
+      kairos_tiles_97: 175036993
+      kairos_tiles_106: 705676813
       kairos_tiles_63: 79458634
       kairos_tiles_76: 1812425175
       kairos_tiles_37: 1210580289
@@ -2703,6 +3472,7 @@ TextureImporter:
       kairos_tiles_53: 1926069599
       kairos_tiles_6: -1057531375
       kairos_tiles_7: 535451019
+      kairos_tiles_118: -722951456
       leverDisabled: 2014330270
       kairos_tiles_54: -2090066326
       kairos_tiles_28: 708959389
