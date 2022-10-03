@@ -295,6 +295,12 @@ public class CrewmateController : Phaseable
 
     public void Rescue()
     {
+        if (!alive)
+        {
+            // Cannot rescue what is dead
+            return;
+        }
+        
         if (!rescued)
         {
             // Game.DisplayFloatingText(transform.position, "'I am safe!'", 5);
@@ -311,6 +317,12 @@ public class CrewmateController : Phaseable
 
     public void Kill()
     {
+        if (rescued)
+        {
+            // Cannot kill if rescued
+            return;
+        }
+        
         if (!alive)
         {
             Debug.LogError("Do you want to kill something that is already dead?????");
