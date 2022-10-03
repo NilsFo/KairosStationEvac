@@ -156,14 +156,15 @@ public class GamePhaseLoop : MonoBehaviour
             if (timer >= phaseLengthEvac)
             {
                 timer = 0;
-                if (myGameState.levelWon)
-                {
-                    SetPhasePlanning();
-                }
-                else
-                {
-                    SetPhaseExplosion();
-                }
+                // if (myGameState.levelWon)
+                // {
+                //     SetPhasePlanning();
+                // }
+                // else
+                // {
+                //     SetPhaseExplosion();
+                // }
+                SetPhaseExplosion();
             }
         }
     }
