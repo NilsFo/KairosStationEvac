@@ -249,7 +249,7 @@ public class CrewmateController : Phaseable
         // Set visuals
         _animator.SetBool(AnimRunning, false);
         _animator.SetBool(AnimLeft, startFlipped);
-        _animator.SetBool(AnimPanic, false);
+        _animator.SetBool(AnimPanic, true);
         spriteRenderer.flipX = startFlipped;
     }
 
