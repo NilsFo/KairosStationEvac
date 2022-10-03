@@ -93,7 +93,7 @@ public class GamePhaseLoop : MonoBehaviour
                 return;
             }
 
-            if (myGameState.levelWon)
+            if (myGameState.levelWon && myGameState.winTimer > .69f)
             {
                 myGameState.NextLevel();
                 return;
@@ -109,6 +109,7 @@ public class GamePhaseLoop : MonoBehaviour
                 return;
             }
 
+            myGameState.limitedUI = false;
             switch (_currentPhase)
             {
                 case GameState.Phase.EvacuationPhase:
@@ -182,7 +183,7 @@ public class GamePhaseLoop : MonoBehaviour
     public void SetPhaseTutorial()
     {
         timer = 0;
-        myGameState.currentPhase = GameState.Phase.PlanningPhase;
+        myGameState.currentPhase = GameState.Phase.Tutorial;
     }
 
     public void SetPhaseEvac()

@@ -6,7 +6,6 @@ public class MusicController : MonoBehaviour {
     private GameState _state;
     public AudioSource musicEvac, musicPlan, bigExplosion;
     
-    
     public bool evac;
     public float fadeSpeed = 4f;
     public float maxVolume = 0.5f;
@@ -19,7 +18,6 @@ public class MusicController : MonoBehaviour {
         musicEvac.volume = _fade * maxVolume;
         musicPlan.volume = (1 - _fade) * maxVolume;
     }
-
 
     // Update is called once per frame
     void Update() {
