@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -19,7 +20,6 @@ public class GameState : MonoBehaviour
 
     public string nextLevelName="";
 
-    private bool firstCleanDone = false;
     public Phase currentPhase = Phase.Unknown;
     private Phase _lastKnownPhase;
     public bool levelWon = false;
@@ -252,8 +252,8 @@ public class GameState : MonoBehaviour
         selectedCrewmate = null;
         ResetCameraShake();
 
-        for (var index = myObservers.Count - 1; index >= 0; index--) {
-            var p = myObservers [index];
+        foreach (var p in myObservers)
+        {
             p.Reset();
         }
     }
