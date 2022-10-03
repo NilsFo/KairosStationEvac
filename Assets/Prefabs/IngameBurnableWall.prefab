@@ -103,6 +103,7 @@ MonoBehaviour:
   myCollider: {fileID: 2976584033288758280}
   brokenPercent: 0
   broken: 0
+  frameVisible: 0
 --- !u!1 &3215993922963645912
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +464,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1184314403, guid: b37b59d48b1cff14bbbbd78419786d91, type: 3}
+  m_Sprite: {fileID: 1550791123, guid: b37b59d48b1cff14bbbbd78419786d91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
