@@ -72,7 +72,7 @@ public class ExplosionBehaviourScript : Phaseable
         {
             var crew = _crewmateControllers[i];
             crew.Kill();
-            _crewmateControllers.RemoveAt(i);
+            //_crewmateControllers.RemoveAt(i);
         }
         if(!isOnFire) {
             Game.ShakeCamera(explosionMagnitude, explosionDuration);

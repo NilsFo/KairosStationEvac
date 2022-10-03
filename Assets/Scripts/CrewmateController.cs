@@ -9,6 +9,7 @@ public class CrewmateController : Phaseable
 {
     public GameObject selectorSmall;
     public GameObject selectorBig;
+    public GameObject playerControlIndicator;
     private bool mouseOver = false;
     private GamePhaseLoop _phaseLoop;
 
@@ -248,7 +249,11 @@ public class CrewmateController : Phaseable
     public void UpdateSelector()
     {
         GameState.Phase currentPhase = Game.currentPhase;
-
+        if (currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive) {
+            playerControlIndicator.SetActive(true);
+        } else {
+            playerControlIndicator.SetActive(false);
+        }
         if (currentPhase != GameState.Phase.PlanningPhase)
         {
             selectorSmall.SetActive(false);
@@ -258,6 +263,7 @@ public class CrewmateController : Phaseable
             _positionPath.Alpha = 0;
             return;
         }
+
 
         if (mouseOver || SelectedForEvac)
         {
@@ -306,6 +312,7 @@ public class CrewmateController : Phaseable
         _animator.SetTrigger(AnimDeath);
         //GetComponent<Rigidbody2D>().simulated = false;
         alive = false;
+        UpdateSelector();
     }
 
     private void OnMouseEnter()
@@ -329,7 +336,7 @@ public class CrewmateController : Phaseable
 
     private void OnMouseDown()
     {
-        print("A crewmate has been clicked.");
+//        print("A crewmate has been clicked.");
         if (Game.currentPhase == GameState.Phase.PlanningPhase)
         {
             Game.selectedCrewmate = this;
