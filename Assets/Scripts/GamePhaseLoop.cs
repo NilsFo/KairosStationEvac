@@ -30,12 +30,6 @@ public class GamePhaseLoop : MonoBehaviour
             Debug.LogError("UNKNOWN STATE!");
         }
 
-        if (_currentPhase == GameState.Phase.PlanningPhase && myGameState.levelWon)
-        {
-            SetPhaseEvac();
-            return;
-        }
-
         //////////////////////////////////////
         //Checking for inputs
         //////////////////////////////////////
@@ -100,6 +94,12 @@ public class GamePhaseLoop : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (_currentPhase == GameState.Phase.PlanningPhase && myGameState.levelWon)
+        {
+            SetPhaseEvac();
+            return;
+        }
+
         if (_currentPhase == GameState.Phase.EvacuationPhase)
         {
             timer += Time.fixedDeltaTime;
