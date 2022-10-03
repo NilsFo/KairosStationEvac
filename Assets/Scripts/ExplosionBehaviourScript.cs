@@ -49,6 +49,11 @@ public class ExplosionBehaviourScript : Phaseable
         GetComponent<Collider2D>().enabled = false;
     }
 
+    public override void PhaseSplash() {
+        base.PhaseSplash();
+        isLive = false;
+    }
+
     private void Update()
     {
         if(!isLive) return;

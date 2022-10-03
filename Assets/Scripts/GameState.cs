@@ -11,23 +11,30 @@ public class GameState : MonoBehaviour
 {
     public enum Phase
     {
+        LevelSplash,
+        Tutorial,
         Unknown,
         EvacuationPhase,
         PlanningPhase,
         ExplosionPhase
     }
 
-    public string nextLevelName="";
+    public string nextLevelName = "";
+    public bool tutorialLevel = false;
 
     public Phase currentPhase = Phase.Unknown;
     private Phase _lastKnownPhase;
     public bool levelWon = false;
+    public bool showingSplashScreen = false;
     public UnityEvent onPhaseEvacuate;
     public UnityEvent onPhasePlanning;
+    public UnityEvent onPhaseSplash;
+    public UnityEvent onPhaseTutorial;
     public UnityEvent onWin;
     public UnityEvent onWinOnce;
     public UnityEvent onExplosion;
     public UnityEvent onResetGameplay;
+    public bool showingConfirmPopup;
 
     private List<Phaseable> myObservers = new List<Phaseable>();
     private List<CrewmateController> allCrewmates = new List<CrewmateController>();
@@ -46,6 +53,8 @@ public class GameState : MonoBehaviour
 
     private void OnEnable()
     {
+        currentPhase = Phase.Unknown;
+        _lastKnownPhase = Phase.Unknown;
         var crewmates = FindObjectsOfType<CrewmateController>();
         foreach (CrewmateController c in crewmates)
         {
@@ -58,12 +67,16 @@ public class GameState : MonoBehaviour
     {
         if (onPhaseEvacuate == null) onPhaseEvacuate = new UnityEvent();
         if (onPhasePlanning == null) onPhasePlanning = new UnityEvent();
+        if (onPhaseSplash == null) onPhaseSplash = new UnityEvent();
+        if (onPhaseTutorial == null) onPhaseTutorial = new UnityEvent();
         if (onWin == null) onWin = new UnityEvent();
         if (onWinOnce == null) onWinOnce = new UnityEvent();
         if (onResetGameplay == null) onResetGameplay = new UnityEvent();
         if (onExplosion == null) onExplosion = new UnityEvent();
 
         levelWon = false;
+        showingConfirmPopup = false;
+        showingSplashScreen = false;
         CMCameraFocus = GameObject.FindGameObjectWithTag("CameraFocus");
         _tilemapSaved = FindObjectOfType<UITilemapSaved>();
         CheckWinCondition();
@@ -145,13 +158,13 @@ public class GameState : MonoBehaviour
     public void CheckWinCondition()
     {
         int rescueCount = GetRescuedCrewmateCount();
-        
+
         if (_tilemapSaved != null)
         {
             _tilemapSaved.savedCurrent = rescueCount;
             _tilemapSaved.savedTarget = CrewmateCount;
         }
-        
+
         if (rescueCount == CrewmateCount)
         {
             WinGame();
@@ -165,7 +178,7 @@ public class GameState : MonoBehaviour
         if (!levelWon)
         {
             print("A winner is you!");
-            
+
             onWinOnce.Invoke();
             foreach (var p in myObservers)
             {
@@ -179,7 +192,7 @@ public class GameState : MonoBehaviour
 
     private void OnStateChanged()
     {
-        print("The state has changed. From: '" + _lastKnownPhase + "' to '" + currentPhase);
+        print("The state has changed. From: '" + _lastKnownPhase + "' to '" + currentPhase + "'!");
         switch (currentPhase)
         {
             case Phase.PlanningPhase:
@@ -191,11 +204,20 @@ public class GameState : MonoBehaviour
             case Phase.ExplosionPhase:
                 OnPhaseExplosion();
                 break;
+            case Phase.LevelSplash:
+                OnPhaseSplash();
+                break;
+            case Phase.Tutorial:
+                OnPhaseTutorial();
+                break;
+            default:
+                throw new Exception("Unknown state to switch to!");
         }
     }
 
     private void OnPhaseEvacuate()
     {
+        showingConfirmPopup = false;
         onPhaseEvacuate.Invoke();
         CheckWinCondition();
 
@@ -218,6 +240,7 @@ public class GameState : MonoBehaviour
 
     private void OnPhasePlanning()
     {
+        showingSplashScreen = false;
         ResetAndCleanUp();
         CheckWinCondition();
         onPhasePlanning.Invoke();
@@ -229,13 +252,14 @@ public class GameState : MonoBehaviour
 
     private void OnWin()
     {
+        showingConfirmPopup = false;
         onWin.Invoke();
         foreach (var p in myObservers)
         {
             p.OnWin();
         }
     }
-    
+
     private void OnPhaseExplosion()
     {
         onExplosion.Invoke();
@@ -245,8 +269,31 @@ public class GameState : MonoBehaviour
         }
     }
 
+    private void OnPhaseSplash()
+    {
+        showingSplashScreen = true;
+        ResetAndCleanUp();
+        onPhaseSplash.Invoke();
+        showingSplashScreen = true;
+        foreach (var p in myObservers)
+        {
+            p.PhaseSplash();
+        }
+    }
+
+    private void OnPhaseTutorial()
+    {
+        showingSplashScreen = false;
+        onPhaseTutorial.Invoke();
+        foreach (var p in myObservers)
+        {
+            p.PhaseTutorial();
+        }
+    }
+
     private void ResetAndCleanUp()
     {
+        showingConfirmPopup = false;
         onResetGameplay.Invoke();
         selectedCrewmate = null;
         ResetCameraShake();
@@ -268,6 +315,7 @@ public class GameState : MonoBehaviour
         {
             BackToMainMenu();
         }
+
         SceneManager.LoadScene(nextLevelName, LoadSceneMode.Single);
     }
 

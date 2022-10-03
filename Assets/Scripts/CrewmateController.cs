@@ -62,7 +62,6 @@ public class CrewmateController : Phaseable
         _animator = spriteRenderer.GetComponent<Animator>();
         _positionPath = GetComponentInChildren<PositionPath>();
         _initialPosition = transform.position;
-
     }
 
     void Update()
@@ -114,7 +113,7 @@ public class CrewmateController : Phaseable
         gameObject.SetActive(true);
         transform.position = _initialPosition;
         myHitbox.enabled = true;
-        
+
         //GetComponent<Rigidbody2D>().simulated = true;
 
         _animator.ResetTrigger(AnimDeath);
@@ -135,7 +134,7 @@ public class CrewmateController : Phaseable
             if (playerControlled)
             {
                 _savedInputs[_frame] = _lastInput;
-                _savedPositions [_frame] = transform.position;
+                _savedPositions[_frame] = transform.position;
                 //Debug.Log(input);
             }
             else if (_savedInputs != null)
@@ -232,16 +231,18 @@ public class CrewmateController : Phaseable
         UpdateSelector();
         if (SelectedForEvac)
         {
-            Game.DisplayFloatingText(transform.position, "'Get me out of here!'", 5);
+            // Game.DisplayFloatingText(transform.position, "'Get me out of here!'", 5);
         }
     }
 
     public override void PhasePlanning()
     {
-        if (playerControlled) {
+        if (playerControlled)
+        {
             // Make path from positions
             _positionPath.MakePath(_savedPositions);
         }
+
         UpdateSelector();
 
         // Set visuals
@@ -283,13 +284,19 @@ public class CrewmateController : Phaseable
             selectorBig.SetActive(true);
             _positionPath.visible = false;
         }
+
+        if (Game.showingConfirmPopup)
+        {
+            selectorSmall.SetActive(false);
+            selectorBig.SetActive(false);
+        }
     }
 
     public void Rescue()
     {
         if (!rescued)
         {
-            Game.DisplayFloatingText(transform.position, "'I am safe!'", 5);
+            // Game.DisplayFloatingText(transform.position, "'I am safe!'", 5);
             graphicsObj.SetActive(false);
             rescued = true;
             Game.CheckWinCondition();
@@ -335,7 +342,7 @@ public class CrewmateController : Phaseable
     public override void PhaseExplosion()
     {
         base.PhaseExplosion();
-        if(alive)
+        if (alive)
             Kill();
     }
 
@@ -380,14 +387,17 @@ public class CrewmateController : Phaseable
             _animator.SetBool(AnimDoor, true);
         }
     }
-    
-    
-    private void OnCollisionStay2D(Collision2D other) {
+
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
         var box = other.collider.GetComponent<BoxEntity>();
-        if (box != null) {
-            if(_isMoving)
+        if (box != null)
+        {
+            if (_isMoving)
                 _animator.SetBool(AnimPush, true);
-            else {
+            else
+            {
                 _animator.SetBool(AnimPush, false);
             }
         }

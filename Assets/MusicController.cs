@@ -23,7 +23,7 @@ public class MusicController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        evac = _state.currentPhase != GameState.Phase.PlanningPhase;
+        evac = _state.currentPhase == GameState.Phase.ExplosionPhase || _state.currentPhase == GameState.Phase.EvacuationPhase;
         if (evac) {
             if (_fade < 1) {
                 _fade += fadeSpeed * Time.deltaTime;

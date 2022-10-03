@@ -17,7 +17,7 @@ public class GamePhaseLoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myGameState.currentPhase = GameState.Phase.PlanningPhase;
+        myGameState.currentPhase = GameState.Phase.LevelSplash;
         timer = 0;
     }
 
@@ -34,8 +34,24 @@ public class GamePhaseLoop : MonoBehaviour
         //Checking for inputs
         //////////////////////////////////////
 
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("Pressed mouse button.");
+            if (myGameState.showingSplashScreen)
+            {
+                if (myGameState.tutorialLevel)
+                {
+                    SetPhaseTutorial();
+                }
+                else
+                {
+                    SetPhasePlanning();
+                }
+            }
+        }
+
         /// Back to menu / cancel
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetKeyUp(KeyCode.Return))
         {
             if (myGameState.levelWon)
             {
@@ -43,13 +59,45 @@ public class GamePhaseLoop : MonoBehaviour
                 return;
             }
 
+            if (_currentPhase == GameState.Phase.Tutorial || _currentPhase == GameState.Phase.LevelSplash)
+            {
+                myGameState.BackToMainMenu();
+            }
+
             if (_currentPhase == GameState.Phase.EvacuationPhase)
             {
                 SetPhasePlanning();
             }
+            else
+            {
+                if (myGameState.showingConfirmPopup)
+                {
+                    myGameState.showingConfirmPopup = false;
+                }
+                else
+                {
+                    if (_currentPhase == GameState.Phase.PlanningPhase)
+                    {
+                        myGameState.showingConfirmPopup = true;
+                    }
+                }
+            }
+        }
 
-            myGameState.BackToMainMenu();
-            return;
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (myGameState.showingConfirmPopup)
+            {
+                myGameState.showingConfirmPopup = false;
+                myGameState.BackToMainMenu();
+                return;
+            }
+
+            if (myGameState.levelWon)
+            {
+                myGameState.NextLevel();
+                return;
+            }
         }
 
         // Changing phase by pressing space or Q
@@ -93,7 +141,8 @@ public class GamePhaseLoop : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (_currentPhase == GameState.Phase.PlanningPhase && myGameState.levelWon)
         {
             SetPhaseEvac();
@@ -119,6 +168,18 @@ public class GamePhaseLoop : MonoBehaviour
     }
 
     public void SetPhasePlanning()
+    {
+        timer = 0;
+        myGameState.currentPhase = GameState.Phase.PlanningPhase;
+    }
+
+    public void SetPhaseSplash()
+    {
+        timer = 0;
+        myGameState.currentPhase = GameState.Phase.LevelSplash;
+    }
+
+    public void SetPhaseTutorial()
     {
         timer = 0;
         myGameState.currentPhase = GameState.Phase.PlanningPhase;
