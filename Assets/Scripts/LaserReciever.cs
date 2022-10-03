@@ -28,7 +28,7 @@ public class LaserReciever : Phaseable
         
         if (Game != null)
         {
-            Game.DisplayFloatingText(transform.position,"Laser Get!");
+            //Game.DisplayFloatingText(transform.position,"Laser Get!");
         }
     }
 
@@ -39,7 +39,7 @@ public class LaserReciever : Phaseable
         
         if (Game != null)
         {
-            Game.DisplayFloatingText(transform.position,"Laser Lost");
+            //Game.DisplayFloatingText(transform.position,"Laser Lost");
         }
     }
     

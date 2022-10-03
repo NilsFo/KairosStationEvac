@@ -29,6 +29,7 @@ public class GameState : MonoBehaviour
     public UnityEvent onWinOnce;
     public UnityEvent onExplosion;
     public UnityEvent onResetGameplay;
+    public bool showingConfirmPopup;
 
     private List<Phaseable> myObservers = new List<Phaseable>();
     private List<CrewmateController> allCrewmates = new List<CrewmateController>();
@@ -65,6 +66,7 @@ public class GameState : MonoBehaviour
         if (onExplosion == null) onExplosion = new UnityEvent();
 
         levelWon = false;
+        showingConfirmPopup = false;
         CMCameraFocus = GameObject.FindGameObjectWithTag("CameraFocus");
         _tilemapSaved = FindObjectOfType<UITilemapSaved>();
         CheckWinCondition();
@@ -197,6 +199,7 @@ public class GameState : MonoBehaviour
 
     private void OnPhaseEvacuate()
     {
+        showingConfirmPopup = false;
         onPhaseEvacuate.Invoke();
         CheckWinCondition();
 
@@ -230,6 +233,7 @@ public class GameState : MonoBehaviour
 
     private void OnWin()
     {
+        showingConfirmPopup = false;
         onWin.Invoke();
         foreach (var p in myObservers)
         {
@@ -248,6 +252,7 @@ public class GameState : MonoBehaviour
 
     private void ResetAndCleanUp()
     {
+        showingConfirmPopup = false;
         onResetGameplay.Invoke();
         selectedCrewmate = null;
         ResetCameraShake();

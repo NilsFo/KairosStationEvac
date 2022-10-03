@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 public class UITilemapObjective : Phaseable
 {
     public GameObject winPopup;
+    public GameObject confirmBackPopup;
+
     public Tilemap myMap;
     public Vector2Int firstDigit;
     public Vector2Int secondDigit;
@@ -51,6 +53,8 @@ public class UITilemapObjective : Phaseable
     private void UpdateText()
     {
         winPopup.SetActive(Game.levelWon);
+        confirmBackPopup.SetActive(Game.showingConfirmPopup);
+
         tilemapPlanning.SetActive(false);
         tilemapEvac.SetActive(false);
         timeRemaining = _phaseLoop.GetTimerForUI();

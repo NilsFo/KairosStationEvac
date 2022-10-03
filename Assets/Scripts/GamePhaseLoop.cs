@@ -35,7 +35,7 @@ public class GamePhaseLoop : MonoBehaviour
         //////////////////////////////////////
 
         /// Back to menu / cancel
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.KeypadEnter)||Input.GetKeyUp(KeyCode.Return))
         {
             if (myGameState.levelWon)
             {
@@ -47,9 +47,35 @@ public class GamePhaseLoop : MonoBehaviour
             {
                 SetPhasePlanning();
             }
+            else
+            {
+                if (myGameState.showingConfirmPopup)
+                {
+                    myGameState.showingConfirmPopup = false;  
+                }
+                else
+                {
+                    if (_currentPhase==GameState.Phase.PlanningPhase)
+                    {
+                        myGameState.showingConfirmPopup = true;  
+                    }
+                }
+            }
+        }
 
-            myGameState.BackToMainMenu();
-            return;
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (myGameState.showingConfirmPopup)
+            {
+                myGameState.showingConfirmPopup = false;
+                myGameState.BackToMainMenu();
+                return;
+            }
+            if (myGameState.levelWon)
+            {
+                myGameState.NextLevel();
+                return;
+            }
         }
 
         // Changing phase by pressing space or Q
@@ -93,7 +119,8 @@ public class GamePhaseLoop : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (_currentPhase == GameState.Phase.PlanningPhase && myGameState.levelWon)
         {
             SetPhaseEvac();
