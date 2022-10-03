@@ -76,6 +76,7 @@ public class ExplosionBehaviourScript : Phaseable
         }
         if(!isOnFire) {
             Game.ShakeCamera(explosionMagnitude, explosionDuration);
+            GetComponent<AudioSource>().Play();
         }
         isOnFire = true;
         Indicator.SetActive(false);
