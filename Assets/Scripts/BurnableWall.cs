@@ -40,6 +40,7 @@ public class BurnableWall : Phaseable
 
     public override void Start()
     {
+        base.Start();
         Reset();
     }
 
@@ -53,6 +54,7 @@ public class BurnableWall : Phaseable
     {
         if (!broken && myLaserTarget.Broken) {
             breakSound.Play();
+            Game.ShakeCamera(0.1f, 0.1f);
         }
         
         brokenPercent = myLaserTarget.GetDestructionPercent();
