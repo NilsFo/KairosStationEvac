@@ -21,11 +21,16 @@ public class GameState : MonoBehaviour
 
     public string nextLevelName = "";
     public bool tutorialLevel = false;
+    public bool limitedUI = false;
+    public TutorialTextBox firstTutorialBox;
 
     public Phase currentPhase = Phase.Unknown;
     private Phase _lastKnownPhase;
+
     public bool levelWon = false;
     public bool showingSplashScreen = false;
+    public float winTimer = 0f;
+
     public UnityEvent onPhaseEvacuate;
     public UnityEvent onPhasePlanning;
     public UnityEvent onPhaseSplash;
@@ -74,6 +79,13 @@ public class GameState : MonoBehaviour
         if (onResetGameplay == null) onResetGameplay = new UnityEvent();
         if (onExplosion == null) onExplosion = new UnityEvent();
 
+        if (string.IsNullOrEmpty(nextLevelName))
+        {
+            nextLevelName = "";
+        }
+
+        nextLevelName = nextLevelName.Trim();
+
         levelWon = false;
         showingConfirmPopup = false;
         showingSplashScreen = false;
@@ -116,6 +128,11 @@ public class GameState : MonoBehaviour
         if (cameraShakeDuration > 0)
         {
             _cameraShakeDurationTimer += Time.deltaTime;
+        }
+
+        if (levelWon)
+        {
+            winTimer += Time.deltaTime;
         }
     }
 
@@ -252,6 +269,7 @@ public class GameState : MonoBehaviour
 
     private void OnWin()
     {
+        limitedUI = false;
         showingConfirmPopup = false;
         onWin.Invoke();
         foreach (var p in myObservers)
@@ -262,6 +280,7 @@ public class GameState : MonoBehaviour
 
     private void OnPhaseExplosion()
     {
+        limitedUI = false;
         onExplosion.Invoke();
         foreach (var p in myObservers)
         {
@@ -289,6 +308,9 @@ public class GameState : MonoBehaviour
         {
             p.PhaseTutorial();
         }
+
+        firstTutorialBox.Show();
+        limitedUI = true;
     }
 
     private void ResetAndCleanUp()
@@ -298,8 +320,9 @@ public class GameState : MonoBehaviour
         selectedCrewmate = null;
         ResetCameraShake();
 
-        for (var index = myObservers.Count - 1; index >= 0; index--) {
-            var p = myObservers [index];
+        for (var index = myObservers.Count - 1; index >= 0; index--)
+        {
+            var p = myObservers[index];
             p.Reset();
         }
     }
@@ -311,11 +334,14 @@ public class GameState : MonoBehaviour
 
     public void NextLevel()
     {
+        print("Request to go to the next level.");
         if (string.IsNullOrEmpty(nextLevelName))
         {
+            print("Invalid level name. Returning to menu.");
             BackToMainMenu();
         }
 
+        print("Loading level: " + nextLevelName);
         SceneManager.LoadScene(nextLevelName, LoadSceneMode.Single);
     }
 

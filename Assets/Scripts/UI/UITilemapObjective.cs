@@ -60,8 +60,9 @@ public class UITilemapObjective : Phaseable
         tilemapPlanning.SetActive(false);
         tilemapEvac.SetActive(false);
         timeRemaining = _phaseLoop.GetTimerForUI();
+        bool limitedUI = Game.limitedUI;
 
-        if (!Game.levelWon)
+        if (!Game.levelWon && !limitedUI)
         {
             if (Game.currentPhase == GameState.Phase.PlanningPhase)
             {

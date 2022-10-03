@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class UITilemapSaved : MonoBehaviour
 {
 
+    private GameState Game;
+    public TilemapRenderer myRenderer;
     public Tilemap myMap;
     public Vector2Int tilePositionCurrent;
     public Vector2Int tilePositionTarget;
@@ -18,6 +21,7 @@ public class UITilemapSaved : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Game = FindObjectOfType<GameState>();
         UpdateText();
     }
 
@@ -25,6 +29,7 @@ public class UITilemapSaved : MonoBehaviour
     void Update()
     {
         UpdateText();
+        myRenderer.enabled = !Game.limitedUI;
     }
 
     private void UpdateText()
