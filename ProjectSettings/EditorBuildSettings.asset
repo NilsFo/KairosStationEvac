@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Shuttle.unity
     guid: da193cfb8d71278428f9df897a617000
+  - enabled: 1
+    path: Assets/Scenes/SceneYouWin.unity
+    guid: 4f24eb611727bf0469498661424b3c19
   m_configObjects: {}
