@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1807132181176792015}
   - component: {fileID: 3101791407782699690}
   - component: {fileID: 5501982644081269791}
-  - component: {fileID: 1232899235708103081}
   m_Layer: 0
   m_Name: UI TIlemap - WinPopup
   m_TagString: Untagged
@@ -1563,24 +1562,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &1232899235708103081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2647229999278447240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c177d9975cb10c5429ee4b8ae9f1b83d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myMap: {fileID: 3101791407782699690}
-  tilePositionCurrent: {x: 21, y: 8}
-  tilePositionTarget: {x: 23, y: 8}
-  dictionary: {fileID: 8899504310628057857}
-  savedCurrent: 0
-  savedTarget: 0
 --- !u!1 &3497599867173924578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,7 +1579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3775559578734477744
 Transform:
   m_ObjectHideFlags: 0
@@ -4023,36 +4004,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 1, y: 7, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 6
-      m_TileSpriteIndex: 37
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 24
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741827
-  - first: {x: 2, y: 7, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 33
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 23
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741827
-  - first: {x: 3, y: 7, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 32
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 22
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741827
   - first: {x: -37, y: 9, z: 0}
     second:
       serializedVersion: 2
@@ -6581,15 +6532,15 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: a4249ec1afa6b5048a743bcd6e819672, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 072745fa34be34d4caed906931ea9e50, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 516a306e93a4ab545b7c87862a69df54, type: 2}
   - m_RefCount: 12
     m_Data: {fileID: 11400000, guid: 7027b48eff105f445ac533bd7e22ffd9, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: c38964391c5ccfe43a573a8fad9ac700, type: 2}
@@ -6716,9 +6667,9 @@ Tilemap:
     m_Data: {fileID: -963138135, guid: 54dbf3104447b9947801ade56588e75b, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1649545541, guid: 54dbf3104447b9947801ade56588e75b, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 735103204, guid: 54dbf3104447b9947801ade56588e75b, type: 3}
@@ -6726,10 +6677,10 @@ Tilemap:
     m_Data: {fileID: 1405204930, guid: 54dbf3104447b9947801ade56588e75b, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 35116450, guid: 54dbf3104447b9947801ade56588e75b, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 495
+  - m_RefCount: 492
     m_Data:
       e00: 1
       e01: 0
@@ -6792,12 +6743,12 @@ Tilemap:
     m_Data: {r: 7.1564e-41, g: 7.1564e-41, b: 7.1564e-41, a: 7.1564e-41}
   - m_RefCount: 0
     m_Data: {r: 7.1564e-41, g: 7.1564e-41, b: 7.1564e-41, a: 7.1564e-41}
-  - m_RefCount: 1
-    m_Data: {r: 0.9506224, g: 0.5065316, b: 0.52934355, a: 1}
-  - m_RefCount: 1
-    m_Data: {r: 0.7684265, g: 0.35020468, b: 0.3743828, a: 1}
-  - m_RefCount: 1
-    m_Data: {r: 0.9844912, g: 0.6161153, b: 0.7340055, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   - m_RefCount: 492
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
@@ -6897,7 +6848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4407416338165893740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.33333334, z: -9}
+  m_LocalPosition: {x: 0, y: 0.33333334, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6921,7 +6872,6 @@ GameObject:
   - component: {fileID: 828883320033207171}
   - component: {fileID: 4355095361377264779}
   - component: {fileID: 2638280787239349774}
-  - component: {fileID: 7650962289713545176}
   m_Layer: 0
   m_Name: UI TIlemap - Splash Screen
   m_TagString: Untagged
@@ -6937,7 +6887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4426320531557353860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24955,24 +24905,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &7650962289713545176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4426320531557353860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c177d9975cb10c5429ee4b8ae9f1b83d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myMap: {fileID: 4355095361377264779}
-  tilePositionCurrent: {x: 21, y: 8}
-  tilePositionTarget: {x: 23, y: 8}
-  dictionary: {fileID: 8899504310628057857}
-  savedCurrent: 0
-  savedTarget: 0
 --- !u!1 &4559231644915098553
 GameObject:
   m_ObjectHideFlags: 0
@@ -24984,7 +24916,6 @@ GameObject:
   - component: {fileID: 6296308973874177258}
   - component: {fileID: 1558276817708599844}
   - component: {fileID: 2725305492045984259}
-  - component: {fileID: 5225056513984445545}
   m_Layer: 0
   m_Name: UI TIlemap - Background
   m_TagString: Untagged
@@ -25198,24 +25129,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &5225056513984445545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4559231644915098553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c177d9975cb10c5429ee4b8ae9f1b83d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myMap: {fileID: 1558276817708599844}
-  tilePositionCurrent: {x: 21, y: 8}
-  tilePositionTarget: {x: 23, y: 8}
-  dictionary: {fileID: 8899504310628057857}
-  savedCurrent: 0
-  savedTarget: 0
 --- !u!1 &5962359601476174246
 GameObject:
   m_ObjectHideFlags: 0
@@ -25227,7 +25140,6 @@ GameObject:
   - component: {fileID: 7364582423150662660}
   - component: {fileID: 8399482800369854367}
   - component: {fileID: 142292502935300424}
-  - component: {fileID: 8675046697777579278}
   m_Layer: 0
   m_Name: UI TIlemap - QuitPopup
   m_TagString: Untagged
@@ -27033,24 +26945,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &8675046697777579278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5962359601476174246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c177d9975cb10c5429ee4b8ae9f1b83d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myMap: {fileID: 8399482800369854367}
-  tilePositionCurrent: {x: 21, y: 8}
-  tilePositionTarget: {x: 23, y: 8}
-  dictionary: {fileID: 8899504310628057857}
-  savedCurrent: 0
-  savedTarget: 0
 --- !u!1 &6043524919553816360
 GameObject:
   m_ObjectHideFlags: 0

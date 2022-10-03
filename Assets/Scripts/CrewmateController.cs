@@ -66,7 +66,7 @@ public class CrewmateController : Phaseable
 
     void Update()
     {
-        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive) {
+        if (Game.currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive && !rescued) {
             if (_inputConsumed) {
                 _lastInput = 0;
                 _inputConsumed = false;
@@ -255,7 +255,7 @@ public class CrewmateController : Phaseable
     public void UpdateSelector()
     {
         GameState.Phase currentPhase = Game.currentPhase;
-        if (currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive) {
+        if (currentPhase == GameState.Phase.EvacuationPhase && playerControlled && alive && !rescued) {
             playerControlIndicator.SetActive(true);
         } else {
             playerControlIndicator.SetActive(false);
@@ -300,6 +300,7 @@ public class CrewmateController : Phaseable
             graphicsObj.SetActive(false);
             rescued = true;
             Game.CheckWinCondition();
+            UpdateSelector();
         }
 
         // if (Game.currentPhase==GameState.Phase.EvacuationPhase && SelectedForEvac) {
