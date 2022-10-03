@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 1630282541025604871}
   - component: {fileID: 766037150873593411}
   - component: {fileID: 6911392858734182889}
+  - component: {fileID: 1165735430172745402}
   m_Layer: 0
   m_Name: IngamePod
   m_TagString: Untagged
@@ -358,11 +359,14 @@ MonoBehaviour:
   offGameObject: {fileID: 1084816109467657322}
   onGameObject: {fileID: 1775273823129151947}
   disableGameObject: {fileID: 1114426238624102020}
-  IsToggleable: 0
-  InitState: 0
-  InitActiveEnable: 1
-  currentState: 0
-  currentActiveEnable: 0
+  altOnGameObject: []
+  ButtonType: 1
+  InitActivationState: 0
+  InitPowerState: 1
+  InitTimer: 4
+  currentActivationState: 0
+  currentPowerState: 0
+  currentTimer: 0
   OmEnableEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -387,6 +391,12 @@ MonoBehaviour:
   OmDeactivateEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnActivationText: 
+  OnDeactivationText: 
+  OnEnablePowerText: 
+  OnDisablePowerText: 
+  OnNoPower: 
+  OnAlreadyUsed: 
 --- !u!114 &6911392858734182889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,3 +409,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7aec460d3439ed4bb36c68e8544a880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1165735430172745402}
+--- !u!95 &1165735430172745402
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089928944944430385}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 996b4169986103241bf91c6414e731c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
