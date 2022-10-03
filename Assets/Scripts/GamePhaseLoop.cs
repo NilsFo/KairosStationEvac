@@ -51,7 +51,7 @@ public class GamePhaseLoop : MonoBehaviour
         }
 
         /// Back to menu / cancel
-        if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetKeyUp(KeyCode.Return))
+        if (Input.GetKeyUp(KeyCode.Tab))
         {
             if (myGameState.levelWon)
             {
@@ -156,14 +156,15 @@ public class GamePhaseLoop : MonoBehaviour
             if (timer >= phaseLengthEvac)
             {
                 timer = 0;
-                if (myGameState.levelWon)
-                {
-                    SetPhasePlanning();
-                }
-                else
-                {
-                    SetPhaseExplosion();
-                }
+                // if (myGameState.levelWon)
+                // {
+                //     SetPhasePlanning();
+                // }
+                // else
+                // {
+                //     SetPhaseExplosion();
+                // }
+                SetPhaseExplosion();
             }
         }
     }

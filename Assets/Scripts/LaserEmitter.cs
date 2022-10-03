@@ -84,8 +84,7 @@ public class LaserEmitter : Phaseable
             return;
         }
 
-        Game.DisplayFloatingText(transform.position, "Offff!");
-
+        // Game.DisplayFloatingText(transform.position, "Offff!");
         currentlyOn = false;
         laserRayTarget = null;
         laserSegment.SetActive(false);
