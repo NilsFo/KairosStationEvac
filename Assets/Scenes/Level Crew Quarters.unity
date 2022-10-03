@@ -5594,6 +5594,7 @@ GameObject:
   - component: {fileID: 1130797513}
   - component: {fileID: 1130797512}
   - component: {fileID: 1130797511}
+  - component: {fileID: 1130797516}
   m_Layer: 5
   m_Name: ConGrid4
   m_TagString: Untagged
@@ -6065,6 +6066,32 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!61 &1130797516
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130797509}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.29, y: 5.3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &1140431638 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4220565509041746902, guid: 5acd3b4d3a2ae3c40af845369838bd59, type: 3}
