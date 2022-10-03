@@ -51,7 +51,7 @@ public class GamePhaseLoop : MonoBehaviour
         }
 
         /// Back to menu / cancel
-        if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetKeyUp(KeyCode.Return))
+        if (Input.GetKeyUp(KeyCode.Tab))
         {
             if (myGameState.levelWon)
             {
