@@ -42,7 +42,8 @@ public class ExplosionBehaviourScript : Phaseable
     public override void PhasePlanning()
     {
         isLive = false;
-        localTime = 0;
+        localTime = InitIndicatorTime + InitExplodeTime;
+        if (localTime == 0) isLive = true;
         isOnFire = false;
         Indicator.SetActive(false);
         Explosion.SetActive(false);
