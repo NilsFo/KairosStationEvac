@@ -18,6 +18,7 @@ public class CrewmateController : Phaseable
     private static int n_frames = 50 * 10;
     private ushort[] _savedInputs = new ushort[n_frames];
     private Vector2[] _savedPositions = new Vector2[n_frames];
+    private bool[] _savedBoxPushing = new bool[n_frames];
     private int _frame;
     private Vector2 _initialPosition;
     private ushort _lastInput;
@@ -51,6 +52,7 @@ public class CrewmateController : Phaseable
     private PositionPath _positionPath;
 
     private bool _inputConsumed;
+    private bool _inputMode;  // If replay is in input mode or position mode
 
     // Start is called before the first frame update
     public override void Start()
@@ -102,6 +104,20 @@ public class CrewmateController : Phaseable
         {
             Game.ShakeCamera(moveBoxShakeMagnitude, deathShakeDuration);
         }
+
+        if (Debug.isDebugBuild) {
+            if (Game.currentPhase == GameState.Phase.EvacuationPhase) {
+                if (playerControlled)
+                    spriteRenderer.color = Color.green;
+                else if (_inputMode || _savedBoxPushing[_frame]) {
+                    spriteRenderer.color = Color.blue;
+                } else {
+                    spriteRenderer.color = Color.red;
+                }
+            } else {
+                spriteRenderer.color = Color.white;
+            }
+        }
     }
 
     public override void Reset()
@@ -136,6 +152,7 @@ public class CrewmateController : Phaseable
             {
                 _savedInputs[_frame] = _lastInput;
                 _savedPositions[_frame] = transform.position;
+                _savedBoxPushing[_frame] = pushingBoxRightNow;
                 //Debug.Log(input);
             }
             else if (_savedInputs != null)
@@ -211,8 +228,19 @@ public class CrewmateController : Phaseable
     private void Move(Vector2 movement)
     {
         //Debug.Log(movement);
-        var position = transform.position;
-        _rigidbody2D.MovePosition(new Vector2(position.x, position.y) + speed * Time.fixedDeltaTime * movement);
+        Vector2 currentPosition = transform.position;
+        var plannedPosition = new Vector2(currentPosition.x, currentPosition.y) + speed * Time.deltaTime * movement;
+        if (!playerControlled && !_inputMode && _frame < n_frames && !_savedBoxPushing[_frame]) {
+            var savedPosition = _savedPositions [_frame];
+            if ((currentPosition - _savedPositions [_frame]).sqrMagnitude > Mathf.Pow(speed * Time.fixedDeltaTime*4, 2)) {
+                _inputMode = true;
+                Debug.Log($"Lost position tracking for crewmate, switching to input mode (Distance: {((Vector2)currentPosition - _savedPositions [_frame]).sqrMagnitude}, Position: {(Vector2)currentPosition}, ExpPos {_savedPositions[_frame]}", this);
+            } else {
+                plannedPosition = savedPosition + speed * Time.deltaTime * movement;
+            }
+        }
+        _rigidbody2D.MovePosition(plannedPosition);
+        
     }
 
     public override void PhaseEvacuate()
@@ -222,11 +250,13 @@ public class CrewmateController : Phaseable
             //Debug.Log("Deleting inputs");
             _savedInputs = new ushort[n_frames];
             _savedPositions = new Vector2[n_frames];
+            _savedBoxPushing = new bool[n_frames];
             _animator.SetBool(AnimPanic, false);
         }
         else
         {
             _animator.SetBool(AnimPanic, true);
+            _inputMode = false;
         }
 
         UpdateSelector();
